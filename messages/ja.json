@@ -4,6 +4,103 @@
     "description": "ユーザーの課題を画面フローで解決するフロントエンド開発者のポートフォリオ"
   },
   "Home": {
-    "role": "Frontend Developer"
+    "title": "Home",
+    "greeting": "はじめまして、",
+    "name": "ホ・ジェウォン",
+    "role": "Frontend Developer",
+    "message": "ユーザーの課題を画面フローとして設計し、チームで実際のサービスに実装するフロントエンド開発者を目指しています。",
+    "photoAlt": "ホ・ジェウォンのプロフィール写真",
+    "viewProjects": "プロジェクトを見る",
+    "github": "GitHub"
+  },
+  "About": {
+    "title": "About",
+    "experienceTitle": "経験",
+    "experience": [
+      "チームリーダー経験4回",
+      "企画とサービス設計",
+      "役割分担とスケジュール調整"
+    ],
+    "growthTitle": "成長",
+    "growth": [
+      "Velogに45本以上の投稿",
+      "Reactによるプロジェクト",
+      "APIと状態フローの検証",
+      "AIの活用と結果の検証"
+    ]
+  },
+  "TechStack": {
+    "title": "Tech Stack",
+    "note": "技術名を並べるだけでなく、実際に使った場面を添えています。",
+    "groups": {
+      "frontend": "Frontend",
+      "stateData": "State & Data",
+      "styling": "Styling",
+      "validation": "Design & Validation"
+    },
+    "desc": {
+      "react": "CapTeamとJICHINIの画面およびコンポーネントの実装",
+      "reactRouter": "ページ遷移、管理者と学生のルート分離、保護ルートの構成",
+      "next": "現在学習中",
+      "typescript": "現在学習中",
+      "zustand": "CapTeamのログインユーザーやトークンなどのグローバル状態管理",
+      "axios": "JWTを含むREST APIリクエストと共通の連携フロー",
+      "cssModules": "コンポーネント単位のスタイル分離と、グローバルクラスの衝突の改善",
+      "e2e": "権限、例外フロー、レスポンシブ、APIの重複リクエストとReactの警告の検証",
+      "codex": "コードの下書き、UI修正、APIの追跡、警告の分析、E2Eシナリオの点検"
+    }
+  },
+  "Projects": {
+    "title": "Projects",
+    "placeholder": "CapTeamとJICHINIを準備しています。"
+  },
+  "Experience": {
+    "title": "Experience",
+    "items": {
+      "classLeader": {
+        "period": "2026.08 — 現在",
+        "label": "2年3組 クラス委員長"
+      },
+      "wine": {
+        "period": "2026.08 — 現在",
+        "label": "Web専攻サークル WINE 副部長"
+      },
+      "sports": {
+        "period": "2026.08 — 現在",
+        "label": "生徒会 体育部長"
+      },
+      "capteam": {
+        "period": "2026.03 — 2026.07",
+        "label": "校内キャップストーン 大賞 · CapTeam"
+      },
+      "hackathon": {
+        "period": "2026.07",
+        "label": "校内ハッカソン 最優秀賞 · ピョンギ"
+      },
+      "portfolioAward": {
+        "period": "2026.06",
+        "label": "校内ポートフォリオ大会 大賞"
+      },
+      "jichini": {
+        "period": "2026.01 — 2026.03",
+        "label": "レベルアッププログラム 3位 · JICHINI"
+      },
+      "scholarship": {
+        "period": "2025.12",
+        "label": "学業成績向上 奨学生"
+      },
+      "singapore": {
+        "period": "2025.08",
+        "label": "シンガポール海外研修"
+      },
+      "school": {
+        "period": "2025.03 — 在学中",
+        "label": "慶北ソフトウェアマイスター高等学校"
+      }
+    }
+  },
+  "Contact": {
+    "title": "Contact",
+    "note": "下記のいずれかからご連絡ください。"
   }
 }
