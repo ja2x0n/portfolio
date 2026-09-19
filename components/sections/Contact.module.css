@@ -1,0 +1,30 @@
+.note {
+  margin: calc(var(--space-12) * -1) 0 var(--space-8);
+  color: var(--muted);
+  font-size: var(--text-base);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border-bottom: 1px solid var(--border);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: var(--space-2);
+  font-size: var(--text-lg);
+  color: var(--foreground);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.link:hover {
+  color: var(--accent);
+}
