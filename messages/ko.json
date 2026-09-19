@@ -1,0 +1,9 @@
+{
+  "Meta": {
+    "title": "Portfolio",
+    "description": "사용자 문제를 화면 흐름으로 풀어내는 프론트엔드 개발자 포트폴리오"
+  },
+  "Home": {
+    "role": "Frontend Developer"
+  }
+}

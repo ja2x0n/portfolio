@@ -1,0 +1,9 @@
+{
+  "Meta": {
+    "title": "Portfolio",
+    "description": "Frontend developer portfolio turning user problems into screen flows"
+  },
+  "Home": {
+    "role": "Frontend Developer"
+  }
+}
