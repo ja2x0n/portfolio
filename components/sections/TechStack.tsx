@@ -17,11 +17,7 @@ export default async function TechStack() {
               {group.items.map((item) => (
                 <li key={item.name} className={styles.item}>
                   <span className={styles.name}>{item.name}</span>
-                  {"desc" in item && (
-                    <span className={styles.desc}>
-                      {t(`desc.${item.desc}`)}
-                    </span>
-                  )}
+                  <span className={styles.desc}>{t(`desc.${item.desc}`)}</span>
                 </li>
               ))}
             </ul>

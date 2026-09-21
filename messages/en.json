@@ -41,8 +41,8 @@
     "desc": {
       "react": "Built the screens and components of CapTeam and JICHINI",
       "reactRouter": "Page routing, separate admin and student routes, protected routes",
-      "next": "Currently learning",
-      "typescript": "Currently learning",
+      "javascript": "ES6+ syntax and asynchronous handling with Promises and async/await for API request and response flows",
+      "learning": "Currently learning",
       "zustand": "Global state such as the signed-in user and tokens in CapTeam",
       "axios": "REST API requests with JWT and the shared request flow",
       "cssModules": "Scoped styles per component, fixing global class collisions",

@@ -41,8 +41,8 @@
     "desc": {
       "react": "CapTeam과 JICHINI의 화면 및 컴포넌트 구현",
       "reactRouter": "페이지 이동, 관리자·학생 라우트 분리, 보호 라우트 구성",
-      "next": "현재 학습 중",
-      "typescript": "현재 학습 중",
+      "javascript": "ES6+ 문법과 Promise·async/await 기반 비동기 처리로 API 요청과 응답 흐름 구현",
+      "learning": "현재 학습 중",
       "zustand": "CapTeam의 로그인 사용자와 토큰 등 전역 상태 관리",
       "axios": "JWT를 포함한 REST API 요청과 공통 연동 흐름",
       "cssModules": "컴포넌트별 스타일 범위 분리와 전역 클래스 충돌 개선",
