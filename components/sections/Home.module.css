@@ -32,6 +32,12 @@
   letter-spacing: var(--tracking-tight);
 }
 
+/* 일본어는 글자 사이 어디서나 줄바꿈되므로, 이름 문구의 <wbr> 위치에서만 끊는다. */
+:lang(ja) .name {
+  word-break: keep-all;
+  line-break: strict;
+}
+
 .role {
   margin: var(--space-4) 0 0;
   color: var(--accent);
