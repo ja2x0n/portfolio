@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_JP, Noto_Sans_KR } from "next/font/google";
+import { Anybody, M_PLUS_1 } from "next/font/google";
+import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -7,16 +8,47 @@ import { ThemeProvider } from "next-themes";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const notoKr = Noto_Sans_KR({
+/** 영문. 굵기(wght)와 폭(wdth) 두 축을 쓰는 가변 폰트다. */
+const latin = Anybody({
   subsets: ["latin"],
-  preload: false,
-  variable: "--font-noto-kr",
+  axes: ["wdth"],
+  variable: "--font-latin",
+  display: "swap",
 });
-const notoJp = Noto_Sans_JP({
+
+const korean = localFont({
+  src: [
+    {
+      path: "../../fonts/Paperlogy-3Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/Paperlogy-4Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/Paperlogy-6SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/Paperlogy-7Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-ko",
+  display: "swap",
+});
+
+const japanese = M_PLUS_1({
+  weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
   preload: false,
-  variable: "--font-noto-jp",
+  variable: "--font-ja",
+  display: "swap",
 });
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
@@ -41,7 +73,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${notoKr.variable} ${notoJp.variable}`}
+      className={`${latin.variable} ${korean.variable} ${japanese.variable}`}
       suppressHydrationWarning
     >
       <body>
