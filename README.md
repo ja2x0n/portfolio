@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+프론트엔드 개발자 허재원의 개인 포트폴리오 사이트입니다.
 
-First, run the development server:
+**https://ja2x0n-portfolio.kro.kr**
+
+## 기능
+
+- 한국어·영어·일본어 (`/ko`, `/en`, `/ja`)
+- 라이트·다크 모드
+- Home → About → Tech Stack → Projects → Experience → Contact 한 페이지 구성
+
+## 스택
+
+| 구분   | 사용                                          |
+| ------ | --------------------------------------------- |
+| 코어   | Next.js 16 (App Router), React 19, TypeScript |
+| 스타일 | CSS Modules, CSS 변수 (`styles/tokens.css`)   |
+| 다국어 | next-intl                                     |
+| 테마   | next-themes                                   |
+| 모션   | motion                                        |
+| 배포   | Vercel                                        |
+
+## 실행
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| 명령                | 설명          |
+| ------------------- | ------------- |
+| `npm run dev`       | 개발 서버     |
+| `npm run build`     | 운영 빌드     |
+| `npm run lint`      | ESLint        |
+| `npm run typecheck` | 타입 검사     |
+| `npm run format`    | Prettier 정리 |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 폴더
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/[locale]/   페이지와 레이아웃
+components/     Header, 섹션 공통 래퍼, 섹션
+content/        번역하지 않는 데이터 (기술명, 경력 순서, 링크)
+messages/       언어별 문구
+i18n/           언어 라우팅
+styles/         디자인 토큰, 전역 스타일
+fonts/          직접 호스팅하는 폰트와 라이선스
+```
 
-## Learn More
+## 작업 방식
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Issue → 브랜치(`타입-번호-작업명`) → 커밋 전 컨펌 → PR → Squash merge.
+자세한 규칙은 [docs/rules/agent-workflow.md](docs/rules/agent-workflow.md)에 있습니다.

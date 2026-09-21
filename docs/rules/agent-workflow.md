@@ -55,8 +55,13 @@ AI는 Issue, 브랜치, 구현, 검증, PR까지 수행한다.
 - **스택:** Next.js 16 (App Router), React 19, TypeScript, CSS Modules + CSS Variables, `motion`, `next-intl`, `next-themes`, `lucide-react`, Prettier, ESLint. Playwright는 UI 완성 후 도입.
 - **사용하지 않는 것:** Tailwind, Redux, Three.js/WebGL, Notion API, CMS, 별도 백엔드. 추가하려면 승인이 필요하다.
 - **언어:** `ko`(기본), `en`, `ja`. 라우트는 `/[locale]`, `/[locale]/projects/[slug]`.
-- **테마:** 라이트/다크. `next-themes`가 `data-theme` 속성으로 전환한다. 색은 `styles/tokens.css`의 CSS 변수만 쓴다.
-- **폴더:** `app/[locale]/`, `components/`, `content/`, `messages/`, `i18n/`, `styles/`, `public/`.
+- **테마:** 라이트/다크. `next-themes`가 `data-theme` 속성으로 전환한다. 전환 시 View Transitions로 0.45초 교차한다. 색은 `styles/tokens.css`의 CSS 변수만 쓴다.
+- **디자인 토큰:** 포인트 컬러 라이트 `#0071e3`, 다크 `#0a84ff`. 글래스는 `--glass-bg`, `--glass-border`, `--glass-highlight`, `--glass-shadow`, `--glass-blur`를 쓴다. 간격·글자 크기·자간도 `tokens.css` 변수를 쓴다.
+- **폰트:** 한국어 Paperlogy(`fonts/`에 직접 호스팅), 일본어 M PLUS 1, 영문 Anybody(`next/font/google`). 라틴 글자는 영문 폰트가, 한글은 한국어 폰트가 맡는다. 폰트를 추가·교체하면 `fonts/README.md`에 출처와 라이선스를 기록한다. 라이선스가 확인되지 않은 폰트는 넣지 않는다.
+- **Header:** 왼쪽 `Projects`, 가운데 워드마크 `Heo Jae Won`, 오른쪽 언어(`KO/EN/JP`)·테마 버튼. 스크롤하면 글래스 배경과 하단 진행 바가 나타난다.
+- **도메인:** `https://ja2x0n-portfolio.kro.kr` (내도메인.한국 → Vercel). `.vercel.app` 주소는 Vercel 배포 보호로 로그인이 필요하다.
+- **폴더:** `app/[locale]/`, `components/`(`Header/`, `Section/`, `sections/`), `content/`, `messages/`, `i18n/`(`routing.ts`, `request.ts`, `navigation.ts`), `styles/`, `fonts/`, `public/`.
+- **내부 링크:** 언어를 유지해야 하므로 `next/link` 대신 `@/i18n/navigation`의 `Link`를 쓴다.
 - **프로필 사진(확정):** Home에 증명사진을 넣는다. 파일은 `public/images/profile.*`에 두고 `next/image`로 표시한다. 대체 텍스트는 `messages/*.json`에 언어별로 쓴다. 사진 파일은 사용자가 제공한다. 없으면 만들거나 임의 이미지로 대체하지 않는다.
 - **콘텐츠 분리:** UI 문구는 `messages/*.json`, 프로젝트·경력·기술 데이터는 `content/*.ts`.
 - **명령어:** `npm run dev`, `lint`, `typecheck`, `build`, `format`. 이 목록에 없는 명령은 실행하기 전에 `package.json`에서 확인한다.
@@ -67,12 +72,12 @@ AI는 Issue, 브랜치, 구현, 검증, PR까지 수행한다.
 
 AI는 아래 단계에서 **자동으로 다음 단계로 넘어가지 않는다.** 요청 후 명시적 승인을 기다린다.
 
-| 게이트                       | 승인자 |
-| ---------------------------- | ------ |
-| 구현 결과 컨펌 (**push 전**) | 사용자 |
-| 설계·정책 변경               | 사용자 |
-| PR 검토·**Merge**            | 사용자 |
-| 배포, 도메인 연결            | 사용자 |
+| 게이트                        | 승인자 |
+| ----------------------------- | ------ |
+| 구현 결과 컨펌 (**커밋 전**)  | 사용자 |
+| 설계·정책 변경                | 사용자 |
+| PR **Merge** (§12 Merge 규칙) | 사용자 |
+| 배포 설정, 도메인 연결        | 사용자 |
 
 승인이 없으면 다음 작업으로 넘어가지 않는다. "괜찮아 보인다"는 승인이 아니다.
 
@@ -103,7 +108,8 @@ AI는 아래 단계에서 **자동으로 다음 단계로 넘어가지 않는다
 
 **Git**
 
-- force push, 브랜치·태그 삭제, Merge
+- force push, 브랜치·태그 삭제 (Merge 후 작업 브랜치 삭제는 제외)
+- Merge — 사용자가 해당 PR의 Merge를 직접 지시한 경우에만 한다 (§12)
 - `main` 직접 push (§6의 오타·문구 한 줄 예외는 제외)
 
 승인 요청 형식:
@@ -216,17 +222,21 @@ type: feat | fix | refactor | docs | test | chore
 1. Issue 생성        사용자가 말한 작업을 먼저 Issue로 만든다 (§7, 계획 포함)
 2. 조사             설계서, 관련 코드, Next.js 문서, 기존 컴포넌트·토큰
 3. 브랜치 생성       main에서 분기, 이름은 §6 규칙
-4. 구현             Issue 범위 안에서, 작은 커밋으로 (로컬 커밋만, push 하지 않음)
-5. 자체 검증         §10 체크리스트 실행
+4. 구현             Issue 범위 안에서 작업한다. 이 단계에서는 커밋하지 않는다
+5. 자체 검증         §10 체크리스트 실행 (브라우저 확인 포함)
 6. 컨펌 요청         변경 요약 + 검증 결과 + 위험 지점 (§11)
-                    [STOP] 사용자 컨펌 전에는 push하지 않는다
-7. 수정 반영         의견 반영 후 §10 재실행, 다시 컨펌 요청
-8. push + PR 생성    컨펌 후에만. §12 형식으로 main 대상 PR을 만든다
-                    [STOP] Merge는 사용자가 한다
-9. 설계서 반영      Merge된 뒤에만 Notion 설계서·체크리스트 갱신
+                    [STOP] 사용자 컨펌 전에는 커밋하지 않는다
+7. 수정 반영         의견 반영 후 §10 재실행, 다시 컨펌 요청 (반복)
+8. 커밋             컨펌 후 목적별로 나눠 커밋한다 (§6)
+9. push + PR 생성    §12 형식으로 main 대상 PR을 만든다
+                    [STOP] Merge는 사용자 지시가 있을 때만 (§12)
+10. Merge           Squash merge → 작업 브랜치 삭제 → main 동기화 → 운영 반영 확인
+11. 설계서 반영      Merge된 뒤에만 Notion 설계서·체크리스트 갱신
 ```
 
 구현 중 Issue의 범위나 계획이 달라지면 §13을 따른다.
+
+사용자가 한 번에 여러 단계를 지시하면(예: "커밋하고 PR 만들고 머지까지") 지시한 단계까지 진행한다. 지시에 없는 단계는 건너뛰지 않고 멈춘다.
 
 작업 시작 보고 형식:
 
@@ -330,7 +340,14 @@ AI는 컨펌을 요청하고 결과를 정리한다. **컨펌 완료 처리는 �
 ## 12. Pull Request
 
 - push·PR 생성 전 §10 통과, 사용자 컨펌, 커밋 정리를 확인한다.
-- PR을 **Merge하지 않는다.** 검토가 끝나기 전에 다음 독립 작업을 시작하지 않는다.
+- 검토가 끝나기 전에 다음 독립 작업을 시작하지 않는다.
+
+**Merge 규칙**
+
+- 사용자가 **그 PR의 Merge를 직접 지시한 경우에만** Merge한다. 이전 PR에서 받은 지시는 다음 PR에 적용하지 않는다.
+- 방식은 Squash merge다: `gh pr merge <번호> --squash --delete-branch`
+- Merge 후 `main`으로 전환해 `git pull`하고, 연결된 Issue가 닫혔는지 확인한다.
+- `main` push는 곧 운영 배포다. Merge 후 운영 도메인에서 변경이 반영됐는지 확인하고 보고한다.
 - 본문에 반드시 포함:
 
 ```text
@@ -407,5 +424,5 @@ PR:                   링크, Merge 전 남은 작업
 - 요청 범위만 바꾼다. 하나의 Issue, 하나의 브랜치, 하나의 PR.
 - 사실 관계가 걸린 콘텐츠는 만들지 않는다.
 - 브라우저에서 직접 확인하고, 확인한 것만 보고한다.
-- 승인 게이트에서 멈춘다. Merge는 하지 않는다.
+- 커밋 전에 컨펌을 받는다. Merge는 사용자가 지시한 PR만 한다.
 - 모르면 추측하지 않고 묻는다.
