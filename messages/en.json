@@ -6,7 +6,7 @@
   "Home": {
     "title": "Home",
     "greeting": "Hello,",
-    "name": "Jaewon Heo",
+    "name": "I'm Jaewon Heo",
     "role": "Frontend Developer",
     "message": "I want to be a frontend developer who turns user problems into screen flows and builds them into real services with a team.",
     "photoAlt": "Portrait of Jaewon Heo",
@@ -75,7 +75,7 @@
       },
       "hackathon": {
         "period": "2026.07",
-        "label": "First runner-up, school hackathon · Byeongi"
+        "label": "3rd place, school hackathon · Byeongi"
       },
       "portfolioAward": {
         "period": "2026.06",

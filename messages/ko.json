@@ -6,7 +6,7 @@
   "Home": {
     "title": "Home",
     "greeting": "안녕하세요,",
-    "name": "허재원",
+    "name": "허재원입니다",
     "role": "Frontend Developer",
     "message": "사용자 문제를 화면 흐름으로 풀어내고, 팀과 함께 실제 서비스로 구현하는 프론트엔드 개발자를 목표로 합니다.",
     "photoAlt": "허재원 프로필 사진",
