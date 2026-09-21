@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import Section from "@/components/Section/Section";
@@ -8,7 +9,7 @@ export default async function Home() {
   const t = await getTranslations("Home");
 
   return (
-    <Section id="home" title={t("title")} hideTitle>
+    <Section id="home" title={t("title")} hideTitle reveal={false}>
       <div className={styles.layout}>
         <div className={styles.text}>
           <p className={styles.greeting}>{t("greeting")}</p>
@@ -20,7 +21,8 @@ export default async function Home() {
           <p className={styles.message}>{t("message")}</p>
           <div className={styles.actions}>
             <a className={styles.primary} href="#projects">
-              {t("viewProjects")}
+              <span>{t("viewProjects")}</span>
+              <ArrowRight className={styles.arrow} size={18} aria-hidden />
             </a>
             <a
               className={styles.secondary}
