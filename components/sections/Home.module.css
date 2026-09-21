@@ -1,0 +1,108 @@
+.layout {
+  display: grid;
+  gap: var(--space-16);
+  align-content: center;
+  align-items: center;
+  /* 섹션 위아래 여백까지 합쳐 첫 화면 전체를 채운다. */
+  min-height: calc(100svh - var(--section-gap) * 2);
+}
+
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-12);
+    /* 글과 사진 사이가 벌어지지 않게 전체 폭을 줄인다. */
+    max-width: 64rem;
+  }
+}
+
+.greeting {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  letter-spacing: var(--tracking-snug);
+}
+
+.name {
+  margin-top: var(--space-4);
+  font-size: var(--text-hero);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: var(--tracking-tight);
+}
+
+.role {
+  margin: var(--space-4) 0 0;
+  color: var(--accent);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+.message {
+  margin: var(--space-12) 0 0;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-16);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 var(--space-8);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  text-decoration: none;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.primary:hover {
+  /* TODO(decision): 애니메이션 hover로 교체 예정. 지금은 같은 파란색을 한 단계 어둡게만 한다. */
+  background: color-mix(in srgb, var(--accent) 82%, #000000);
+}
+
+.secondary {
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.secondary:hover {
+  border-color: var(--foreground);
+}
+
+.photo {
+  justify-self: start;
+  width: clamp(10rem, 30vw, 18rem);
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .photo {
+    justify-self: end;
+  }
+}

@@ -4,6 +4,103 @@
     "description": "사용자 문제를 화면 흐름으로 풀어내는 프론트엔드 개발자 포트폴리오"
   },
   "Home": {
-    "role": "Frontend Developer"
+    "title": "Home",
+    "greeting": "안녕하세요,",
+    "name": "허재원입니다",
+    "role": "Frontend Developer",
+    "message": "사용자 문제를 화면 흐름으로 풀어내고, 팀과 함께 실제 서비스로 구현하는 프론트엔드 개발자를 목표로 합니다.",
+    "photoAlt": "허재원 프로필 사진",
+    "viewProjects": "프로젝트 보기",
+    "github": "GitHub"
+  },
+  "About": {
+    "title": "About",
+    "experienceTitle": "경험",
+    "experience": [
+      "팀장 경험 4회",
+      "기획과 서비스 설계",
+      "역할 분담과 일정 조율"
+    ],
+    "growthTitle": "성장",
+    "growth": [
+      "Velog 45개 이상의 포스팅",
+      "React 기반 프로젝트",
+      "API·상태 흐름 검증",
+      "AI 활용과 결과 검증"
+    ]
+  },
+  "TechStack": {
+    "title": "Tech Stack",
+    "note": "기술 이름만 나열하지 않고, 실제로 사용한 상황을 함께 적었습니다.",
+    "groups": {
+      "frontend": "Frontend",
+      "stateData": "State & Data",
+      "styling": "Styling",
+      "validation": "Design & Validation"
+    },
+    "desc": {
+      "react": "CapTeam과 JICHINI의 화면 및 컴포넌트 구현",
+      "reactRouter": "페이지 이동, 관리자·학생 라우트 분리, 보호 라우트 구성",
+      "javascript": "ES6+ 문법과 Promise·async/await 기반 비동기 처리로 API 요청과 응답 흐름 구현",
+      "learning": "현재 학습 중",
+      "zustand": "CapTeam의 로그인 사용자와 토큰 등 전역 상태 관리",
+      "axios": "JWT를 포함한 REST API 요청과 공통 연동 흐름",
+      "cssModules": "컴포넌트별 스타일 범위 분리와 전역 클래스 충돌 개선",
+      "e2e": "권한, 예외 흐름, 반응형, 반복 API 요청과 React 경고 검증",
+      "codex": "코드 초안, UI 수정, API 추적, 경고 분석, E2E 시나리오 점검"
+    }
+  },
+  "Projects": {
+    "title": "Projects",
+    "placeholder": "CapTeam과 JICHINI를 준비하고 있습니다."
+  },
+  "Experience": {
+    "title": "Experience",
+    "items": {
+      "classLeader": {
+        "period": "2026.08 — 진행 중",
+        "label": "2-3 반장"
+      },
+      "wine": {
+        "period": "2026.08 — 진행 중",
+        "label": "웹 전공 동아리 WINE 부장"
+      },
+      "sports": {
+        "period": "2026.08 — 진행 중",
+        "label": "학생회 체육부장"
+      },
+      "capteam": {
+        "period": "2026.03 — 2026.07",
+        "label": "교내 캡스톤 대상 · CapTeam"
+      },
+      "hackathon": {
+        "period": "2026.07",
+        "label": "교내 해커톤 최우수상 · 변기"
+      },
+      "portfolioAward": {
+        "period": "2026.06",
+        "label": "교내 포트폴리오 대회 대상"
+      },
+      "jichini": {
+        "period": "2026.01 — 2026.03",
+        "label": "레벨업 프로그램 3등 · JICHINI"
+      },
+      "scholarship": {
+        "period": "2025.12",
+        "label": "학업성취도 향상 장학생"
+      },
+      "singapore": {
+        "period": "2025.08",
+        "label": "싱가포르 해외연수"
+      },
+      "school": {
+        "period": "2025.03 — 재학 중",
+        "label": "경북소프트웨어마이스터고등학교"
+      }
+    }
+  },
+  "Contact": {
+    "title": "Contact",
+    "note": "아래 채널로 연락해 주세요."
   }
 }

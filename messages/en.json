@@ -4,6 +4,103 @@
     "description": "Frontend developer portfolio turning user problems into screen flows"
   },
   "Home": {
-    "role": "Frontend Developer"
+    "title": "Home",
+    "greeting": "Hello,",
+    "name": "I'm Jaewon Heo",
+    "role": "Frontend Developer",
+    "message": "I want to be a frontend developer who turns user problems into screen flows and builds them into real services with a team.",
+    "photoAlt": "Portrait of Jaewon Heo",
+    "viewProjects": "View projects",
+    "github": "GitHub"
+  },
+  "About": {
+    "title": "About",
+    "experienceTitle": "Experience",
+    "experience": [
+      "Led four teams as team lead",
+      "Product planning and service design",
+      "Role assignment and schedule coordination"
+    ],
+    "growthTitle": "Growth",
+    "growth": [
+      "45+ posts on Velog",
+      "React-based projects",
+      "Verifying API and state flows",
+      "Using AI tools and checking the results"
+    ]
+  },
+  "TechStack": {
+    "title": "Tech Stack",
+    "note": "Rather than listing names, each entry says where I actually used it.",
+    "groups": {
+      "frontend": "Frontend",
+      "stateData": "State & Data",
+      "styling": "Styling",
+      "validation": "Design & Validation"
+    },
+    "desc": {
+      "react": "Built the screens and components of CapTeam and JICHINI",
+      "reactRouter": "Page routing, separate admin and student routes, protected routes",
+      "javascript": "ES6+ syntax and asynchronous handling with Promises and async/await for API request and response flows",
+      "learning": "Currently learning",
+      "zustand": "Global state such as the signed-in user and tokens in CapTeam",
+      "axios": "REST API requests with JWT and the shared request flow",
+      "cssModules": "Scoped styles per component, fixing global class collisions",
+      "e2e": "Checked permissions, error flows, responsive layout, repeated API calls and React warnings",
+      "codex": "Code drafts, UI edits, API tracing, warning analysis, E2E scenario checks"
+    }
+  },
+  "Projects": {
+    "title": "Projects",
+    "placeholder": "CapTeam and JICHINI are on the way."
+  },
+  "Experience": {
+    "title": "Experience",
+    "items": {
+      "classLeader": {
+        "period": "2026.08 — Present",
+        "label": "Class president, Year 2 Class 3"
+      },
+      "wine": {
+        "period": "2026.08 — Present",
+        "label": "Vice president, WINE web development club"
+      },
+      "sports": {
+        "period": "2026.08 — Present",
+        "label": "Head of sports, student council"
+      },
+      "capteam": {
+        "period": "2026.03 — 2026.07",
+        "label": "Grand prize, school capstone · CapTeam"
+      },
+      "hackathon": {
+        "period": "2026.07",
+        "label": "3rd place, school hackathon · Byeongi"
+      },
+      "portfolioAward": {
+        "period": "2026.06",
+        "label": "Grand prize, school portfolio contest"
+      },
+      "jichini": {
+        "period": "2026.01 — 2026.03",
+        "label": "3rd place, Level Up program · JICHINI"
+      },
+      "scholarship": {
+        "period": "2025.12",
+        "label": "Academic improvement scholarship"
+      },
+      "singapore": {
+        "period": "2025.08",
+        "label": "Study trip to Singapore"
+      },
+      "school": {
+        "period": "2025.03 — Present",
+        "label": "Gyeongbuk Software Meister High School"
+      }
+    }
+  },
+  "Contact": {
+    "title": "Contact",
+    "note": "Reach me through any of these."
   }
 }
