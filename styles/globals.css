@@ -6,6 +6,12 @@
   box-sizing: border-box;
 }
 
+/* 고정 Header에 앵커 이동 대상이 가려지지 않게 한다. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
 /* 라틴 글자는 --font-latin, 한글은 --font-ko 가 맡는다. */
 body {
   margin: 0;
@@ -48,6 +54,13 @@ img {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* 테마 전환: 이전 화면과 새 화면을 서서히 교차시킨다. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
