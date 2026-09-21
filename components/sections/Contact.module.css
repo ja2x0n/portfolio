@@ -1,13 +1,15 @@
 .note {
-  margin: calc(var(--space-12) * -1) 0 var(--space-8);
+  margin: calc(var(--space-12) * -1) 0 var(--space-16);
   color: var(--muted);
   font-size: var(--text-base);
+  font-weight: 300;
 }
 
 .list {
   margin: 0;
   padding: 0;
   list-style: none;
+  border-top: 1px solid var(--border);
 }
 
 .item {
@@ -17,12 +19,15 @@
 .link {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  padding-block: var(--space-2);
-  font-size: var(--text-lg);
+  min-height: 56px;
+  padding-block: var(--space-3);
   color: var(--foreground);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
   text-decoration: none;
   word-break: break-all;
+  transition: color 0.18s ease;
 }
 
 .link:hover {
