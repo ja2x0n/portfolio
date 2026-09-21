@@ -81,13 +81,51 @@
 }
 
 .primary {
+  position: relative;
+  gap: var(--space-2);
+  overflow: hidden;
   background: var(--accent);
   color: #ffffff;
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+
+/* 호버 시 버튼을 가로질러 지나가는 유리 광택 */
+.primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgb(255 255 255 / 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
 }
 
 .primary:hover {
-  /* TODO(decision): 애니메이션 hover로 교체 예정. 지금은 같은 파란색을 한 단계 어둡게만 한다. */
-  background: color-mix(in srgb, var(--accent) 82%, #000000);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.primary:hover::after {
+  transform: translateX(120%);
+  transition: transform 0.7s var(--ease-out);
+}
+
+.primary:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  transition: transform 0.35s var(--ease-out);
+}
+
+.primary:hover .arrow {
+  transform: translateX(4px);
 }
 
 .secondary {
@@ -111,4 +149,51 @@
   .photo {
     justify-self: end;
   }
+}
+
+/* 페이지를 열 때 한 번, 위에서부터 순서대로 떠오른다. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+
+.greeting,
+.name,
+.role,
+.message,
+.actions {
+  animation: rise 0.8s var(--ease-out) both;
+}
+
+.greeting {
+  animation-delay: 0.05s;
+}
+
+.name {
+  animation-delay: 0.15s;
+}
+
+.role {
+  animation-delay: 0.28s;
+}
+
+.message {
+  animation-delay: 0.4s;
+}
+
+.actions {
+  animation-delay: 0.52s;
+}
+
+.photo {
+  animation: settle 1s var(--ease-out) 0.25s both;
 }
