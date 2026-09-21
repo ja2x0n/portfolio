@@ -11,7 +11,7 @@
   "Home": {
     "title": "Home",
     "greeting": "はじめまして、",
-    "name": "ホ・ジェウォンです",
+    "name": "ホ・ジェウォン<wbr></wbr>です",
     "role": "Frontend Developer",
     "message": "ユーザーの課題を画面フローとして設計し、チームで実際のサービスに実装するフロントエンド開発者を目指しています。",
     "photoAlt": "ホ・ジェウォンのプロフィール写真",

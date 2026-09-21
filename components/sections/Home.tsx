@@ -12,7 +12,10 @@ export default async function Home() {
       <div className={styles.layout}>
         <div className={styles.text}>
           <p className={styles.greeting}>{t("greeting")}</p>
-          <h1 className={styles.name}>{t("name")}</h1>
+          <h1 className={styles.name}>
+            {/* <wbr>: 줄바꿈을 허용할 지점. 일본어 이름에서만 쓴다. */}
+            {t.rich("name", { wbr: () => <wbr /> })}
+          </h1>
           <p className={styles.role}>{t("role")}</p>
           <p className={styles.message}>{t("message")}</p>
           <div className={styles.actions}>
