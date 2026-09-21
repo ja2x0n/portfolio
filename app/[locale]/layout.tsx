@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import Header from "@/components/Header/Header";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
@@ -82,7 +83,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           defaultTheme="system"
           enableSystem
         >
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <Header />
+            {children}
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

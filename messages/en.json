@@ -3,6 +3,11 @@
     "title": "Portfolio",
     "description": "Frontend developer portfolio turning user problems into screen flows"
   },
+  "Header": {
+    "language": "Select language",
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
   "Home": {
     "title": "Home",
     "greeting": "Hello,",
