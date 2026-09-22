@@ -27,6 +27,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* 한국어는 단어 중간이 아니라 띄어쓰기에서만 줄을 바꾼다. */
+:lang(ko) body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 :lang(ja) body {
   font-family:
     var(--font-latin), var(--font-ja), var(--font-ko), system-ui, sans-serif;

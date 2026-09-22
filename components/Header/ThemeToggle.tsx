@@ -31,11 +31,17 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
-      className={styles.control}
+      className={`${styles.control} ${styles.theme}`}
       aria-label={dark ? t("toLight") : t("toDark")}
       onClick={() => toggle(dark ? "light" : "dark")}
     >
-      {mounted && (dark ? <Sun size={20} /> : <Moon size={20} />)}
+      {/* 앞은 지금 테마, 뒤는 호버하면 보이는 바뀔 테마. key가 바뀌면 등장 애니메이션이 다시 재생된다. */}
+      {mounted && (
+        <span key={String(dark)} className={styles.icon}>
+          {dark ? <Moon size={20} /> : <Sun size={20} />}
+          {dark ? <Sun size={20} /> : <Moon size={20} />}
+        </span>
+      )}
     </button>
   );
 }

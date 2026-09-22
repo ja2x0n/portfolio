@@ -25,7 +25,10 @@ export default function Header() {
     <header className={styles.header} data-scrolled={scrolled}>
       <div className={styles.inner}>
         <Link href="/#projects" className={styles.link}>
-          Projects
+          <span className={styles.linkRoll}>
+            <span>Projects</span>
+            <span aria-hidden="true">Projects</span>
+          </span>
         </Link>
         <Link href="/#home" className={styles.wordmark}>
           Heo Jae Won

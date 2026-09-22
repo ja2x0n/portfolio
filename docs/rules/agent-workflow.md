@@ -58,11 +58,11 @@ AI는 Issue, 브랜치, 구현, 검증, PR까지 수행한다.
 - **테마:** 라이트/다크. `next-themes`가 `data-theme` 속성으로 전환한다. 전환 시 View Transitions로 0.45초 교차한다. 색은 `styles/tokens.css`의 CSS 변수만 쓴다.
 - **디자인 토큰:** 포인트 컬러 라이트 `#0071e3`, 다크 `#0a84ff`. 글래스는 `--glass-bg`, `--glass-border`, `--glass-highlight`, `--glass-shadow`, `--glass-blur`를 쓴다. 간격·글자 크기·자간도 `tokens.css` 변수를 쓴다.
 - **폰트:** 한국어 Paperlogy(`fonts/`에 직접 호스팅), 일본어 M PLUS 1, 영문 Anybody(`next/font/google`). 라틴 글자는 영문 폰트가, 한글은 한국어 폰트가 맡는다. 폰트를 추가·교체하면 `fonts/README.md`에 출처와 라이선스를 기록한다. 라이선스가 확인되지 않은 폰트는 넣지 않는다.
-- **Header:** 왼쪽 `Projects`, 가운데 워드마크 `Heo Jae Won`, 오른쪽 언어(`KO/EN/JP`)·테마 버튼. 스크롤하면 글래스 배경과 하단 진행 바가 나타난다.
+- **Header:** 왼쪽 `Projects`, 가운데 워드마크 `Heo Jae Won`, 오른쪽 언어(`한/EN/日`)·테마 버튼. 스크롤하면 불투명 배경과 하단 진행 바가 나타난다. (글래스 없음)
 - **도메인:** `https://ja2x0n-portfolio.kro.kr` (내도메인.한국 → Vercel). `.vercel.app` 주소는 Vercel 배포 보호로 로그인이 필요하다.
 - **폴더:** `app/[locale]/`, `components/`(`Header/`, `Section/`, `sections/`), `content/`, `messages/`, `i18n/`(`routing.ts`, `request.ts`, `navigation.ts`), `styles/`, `fonts/`, `public/`.
 - **내부 링크:** 언어를 유지해야 하므로 `next/link` 대신 `@/i18n/navigation`의 `Link`를 쓴다.
-- **프로필 사진(확정):** Home에 증명사진을 넣는다. 파일은 `public/images/profile.*`에 두고 `next/image`로 표시한다. 대체 텍스트는 `messages/*.json`에 언어별로 쓴다. 사진 파일은 사용자가 제공한다. 없으면 만들거나 임의 이미지로 대체하지 않는다.
+- **프로필 사진(확정):** About에 증명사진을 넣는다. 파일은 `public/images/profile.*`에 두고 `next/image`로 표시한다. 대체 텍스트는 `messages/*.json`에 언어별로 쓴다. 사진 파일은 사용자가 제공한다. 없으면 만들거나 임의 이미지로 대체하지 않는다.
 - **콘텐츠 분리:** UI 문구는 `messages/*.json`, 프로젝트·경력·기술 데이터는 `content/*.ts`.
 - **명령어:** `npm run dev`, `lint`, `typecheck`, `build`, `format`. 이 목록에 없는 명령은 실행하기 전에 `package.json`에서 확인한다.
 
