@@ -10,29 +10,28 @@
   },
   "Home": {
     "title": "Home",
-    "greeting": "Hello,",
-    "name": "I'm Jaewon Heo",
-    "role": "Frontend Developer",
     "message": "I want to be a frontend developer who turns user problems into screen flows and builds them into real services with a team.",
-    "photoAlt": "Portrait of Jaewon Heo",
     "viewProjects": "View projects",
     "github": "GitHub"
   },
   "About": {
     "title": "About",
-    "experienceTitle": "Experience",
-    "experience": [
-      "Led four teams as team lead",
-      "Product planning and service design",
-      "Role assignment and schedule coordination"
+    "heading": "From planning to screens, I build it through with the team.",
+    "body": [
+      "As team lead four times, I led planning, role assignment and scheduling.",
+      "I actively use AI tools to work more productively, and keep verifying the code along the way."
     ],
-    "growthTitle": "Growth",
-    "growth": [
-      "45+ posts on Velog",
-      "React-based projects",
-      "Verifying API and state flows",
-      "Using AI tools and checking the results"
-    ]
+    "photoAlt": "Portrait of Jaewon Heo",
+    "stats": {
+      "leader": {
+        "value": "4",
+        "label": "Times as team lead"
+      },
+      "velog": {
+        "value": "45+",
+        "label": "Velog posts"
+      }
+    }
   },
   "TechStack": {
     "title": "Tech Stack",
