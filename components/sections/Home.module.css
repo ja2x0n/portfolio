@@ -73,10 +73,10 @@
   }
 }
 
+/* 상단 라벨 아래로 이름과 소개·버튼을 한 덩어리로 모아 화면 가운데쯤에 둔다. */
 .hero {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--space-8);
+  grid-template-rows: auto 1fr auto auto 1.4fr;
 }
 
 /* 상단 작은 라벨 */
@@ -113,7 +113,7 @@
 
 /* 화면 폭을 채우는 이름. 화면에는 대문자, 스크린리더에는 원래 표기로 읽힌다. */
 .name {
-  align-self: center;
+  grid-row: 3;
   margin: 0;
   font-size: clamp(3rem, 15vw, 14rem);
   font-weight: 800;
@@ -121,13 +121,15 @@
   line-height: 0.86;
   letter-spacing: -0.09em;
   text-transform: uppercase;
+  /* 글자 칸 배경이 히어로 배경 위, 글자 아래에 오게 한다. */
+  isolation: isolate;
 }
 
-/* 줄마다 아래에서 올라오도록 넘치는 부분을 가린다. */
+/* 줄마다 아래에서 올라오도록 아래쪽만 가린다. 위·옆은 글자 칸이 잘리지 않게 열어 둔다. */
 .line {
   display: block;
-  overflow: hidden;
   padding-bottom: 0.06em;
+  clip-path: inset(-0.5em -0.5em 0 -0.5em);
 }
 
 .line > span {
@@ -139,25 +141,49 @@
   animation-delay: 0.22s;
 }
 
-.bottom {
-  display: grid;
-  gap: var(--space-8);
-  padding-top: var(--space-8);
-  border-top: 1px solid transparent;
+/*
+ * 글자 칸. 칸 높이를 대문자 윗선~바닥선에 맞춘다.
+ * 드래그로 선택하면 연한 파랑 칸이 나타나고, 2초 뒤 선택한 순서대로 사라진다.
+ */
+.char {
   position: relative;
+  display: inline-block;
+  /* 공백 칸이 사라지지 않게 한다. */
+  white-space: pre;
+  text-box: trim-both cap alphabetic;
 }
 
-/* 왼쪽부터 그어지는 구분선 */
-.bottom::before {
+/*
+ * 좁은 자간 때문에 글자가 칸 밖으로 조금 나오므로 칸을 양옆으로 넓힌다.
+ * 이웃 칸과 겹치는 부분이 진해지지 않도록 불투명한 색을 쓰고,
+ * 투명도만 전환해서 테마를 바꿀 때 칸 색이 바로 바뀌게 한다.
+ */
+.char::before {
   content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 1px;
-  background: var(--border);
-  transform-origin: 0 50%;
-  animation: draw 1.2s var(--ease-out) 0.45s both;
+  inset: -0.04em -0.05em;
+  z-index: -1;
+  background: var(--name-tile);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.char[data-lit]::before {
+  opacity: 1;
+  transition-duration: 0.1s;
+}
+
+/* 브라우저 기본 선택 표시는 끄고 칸으로 대신한다. */
+.name ::selection {
+  background: transparent;
+  color: var(--foreground);
+}
+
+.bottom {
+  grid-row: 4;
+  display: grid;
+  gap: var(--space-8);
+  margin-top: clamp(var(--space-8), 4vw, var(--space-12));
 }
 
 @media (min-width: 768px) {
@@ -187,12 +213,6 @@
 @keyframes line-up {
   from {
     transform: translateY(105%);
-  }
-}
-
-@keyframes draw {
-  from {
-    transform: scaleX(0);
   }
 }
 

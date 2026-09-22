@@ -16,6 +16,8 @@
   /* 히어로 배경 격자와 결 */
   --grid-line: rgb(0 0 0 / 0.05);
   --grain-opacity: 0.06;
+  /* 히어로 이름 글자 칸 */
+  --name-tile: color-mix(in srgb, var(--accent) 16%, var(--background));
   color-scheme: light;
 }
 
@@ -33,6 +35,7 @@
   --glow-1: rgb(10 132 255 / 0.3);
   --grid-line: rgb(255 255 255 / 0.06);
   --grain-opacity: 0.08;
+  --name-tile: color-mix(in srgb, var(--accent) 30%, var(--background));
   color-scheme: dark;
 }
 
