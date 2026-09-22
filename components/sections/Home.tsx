@@ -4,6 +4,7 @@ import HoverButton from "@/components/HoverButton/HoverButton";
 import Section from "@/components/Section/Section";
 import Spotlight from "@/components/Spotlight/Spotlight";
 import { githubUrl } from "@/content/links";
+import HeroName from "./HeroName";
 import styles from "./Home.module.css";
 
 /** 이름과 상단 라벨은 모든 언어에서 영문으로 고정한다. */
@@ -34,15 +35,7 @@ export default async function Home() {
           </span>
         </div>
 
-        <h1 className={styles.name}>
-          {nameLines.map((line, i) => (
-            <span key={line} className={styles.line}>
-              {/* 줄 사이 공백: 스크린리더가 "Heo Jae Won"으로 읽게 한다. */}
-              {i > 0 && " "}
-              <span>{line}</span>
-            </span>
-          ))}
-        </h1>
+        <HeroName lines={nameLines} />
 
         <div className={styles.bottom}>
           <p className={styles.message}>{t("message")}</p>
