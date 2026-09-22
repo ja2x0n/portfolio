@@ -11,6 +11,11 @@
   --glass-border: rgb(0 0 0 / 0.07);
   --glass-highlight: rgb(255 255 255 / 0.7);
   --glass-shadow: 0 8px 32px rgb(15 20 30 / 0.08);
+  /* 히어로 배경: 마우스를 따라오는 빛 */
+  --glow-1: rgb(0 113 227 / 0.22);
+  /* 히어로 배경 격자와 결 */
+  --grid-line: rgb(0 0 0 / 0.05);
+  --grain-opacity: 0.06;
   color-scheme: light;
 }
 
@@ -25,6 +30,9 @@
   --glass-border: rgb(255 255 255 / 0.09);
   --glass-highlight: rgb(255 255 255 / 0.08);
   --glass-shadow: 0 8px 32px rgb(0 0 0 / 0.4);
+  --glow-1: rgb(10 132 255 / 0.3);
+  --grid-line: rgb(255 255 255 / 0.06);
+  --grain-opacity: 0.08;
   color-scheme: dark;
 }
 
@@ -40,10 +48,10 @@
   --space-16: 4rem;
   --space-20: 5rem;
 
-  --content-max: 1120px;
   --header-height: 68px;
   --header-inline: clamp(1.25rem, 4vw, 3.5rem);
-  --gutter: 1.5rem;
+  /* 섹션은 Header보다 조금 안쪽에서 시작한다. */
+  --content-inline: clamp(1.75rem, 7vw, 7rem);
   --section-gap: clamp(6rem, 14vw, 11rem);
 
   /* 작은 쪽과 큰 쪽의 차이를 뚜렷하게 둔다. */

@@ -1,0 +1,115 @@
+.button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: 0 var(--space-6) 0 var(--space-8);
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  text-decoration: none;
+  transition:
+    color 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out);
+}
+
+/* 마우스가 들어온 지점(--x, --y)에서 퍼지는 원 */
+.button::before {
+  content: "";
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  z-index: -1;
+  width: 260%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--fill);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.primary {
+  --fill: color-mix(in srgb, var(--accent) 68%, #000000);
+  --icon-move: translateX(4px);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.secondary {
+  --fill: var(--foreground);
+  --icon-move: translate(3px, -3px);
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+/* 글자 롤링: 두 줄을 겹쳐 두고, 호버 시 위로 한 칸 올린다. */
+.label {
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1.25;
+}
+
+.label > span {
+  grid-area: 1 / 1;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.label > span:last-child {
+  transform: translateY(110%);
+}
+
+.icon {
+  display: inline-grid;
+  transition: transform 0.45s var(--ease-out);
+}
+
+/* 터치 기기에서는 호버 상태가 남지 않도록 마우스가 있을 때만 적용한다. */
+@media (hover: hover) {
+  .button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .button:hover .label > span:first-child {
+    transform: translateY(-110%);
+  }
+
+  .button:hover .label > span:last-child {
+    transform: translateY(0);
+  }
+
+  .button:hover .icon {
+    transform: var(--icon-move);
+  }
+
+  .secondary:hover {
+    border-color: var(--foreground);
+    color: var(--background);
+  }
+}
+
+/* 키보드 포커스에서도 같은 효과 */
+.button:focus-visible::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.button:focus-visible .label > span:first-child {
+  transform: translateY(-110%);
+}
+
+.button:focus-visible .label > span:last-child {
+  transform: translateY(0);
+}
+
+.button:focus-visible .icon {
+  transform: var(--icon-move);
+}
+
+.secondary:focus-visible {
+  border-color: var(--foreground);
+  color: var(--background);
+}

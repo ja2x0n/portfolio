@@ -8,6 +8,8 @@ type Props = {
   hideTitle?: boolean;
   /** 스크롤 등장 효과. 자체 등장 애니메이션이 있는 Home은 끈다. */
   reveal?: boolean;
+  /** hero: 첫 화면 전체 높이, Header와 같은 좌우 여백으로 화면 폭을 모두 쓴다. */
+  variant?: "default" | "hero";
   children: React.ReactNode;
 };
 
@@ -16,8 +18,10 @@ export default function Section({
   title,
   hideTitle,
   reveal = true,
+  variant = "default",
   children,
 }: Props) {
+  const hero = variant === "hero";
   const heading = (
     <h2 id={`${id}-title`} className={hideTitle ? styles.srOnly : styles.title}>
       {title}
@@ -25,8 +29,12 @@ export default function Section({
   );
 
   return (
-    <section id={id} className={styles.section} aria-labelledby={`${id}-title`}>
-      <div className={styles.inner}>
+    <section
+      id={id}
+      className={hero ? styles.hero : styles.section}
+      aria-labelledby={`${id}-title`}
+    >
+      <div className={hero ? styles.heroInner : styles.inner}>
         {reveal ? (
           <>
             <Reveal>{heading}</Reveal>
