@@ -85,7 +85,8 @@
   cursor: grabbing;
 }
 
-.card:focus-visible {
+/* 포커스는 카드를 덮는 링크가 받는다. */
+.card:focus-within {
   box-shadow:
     0 0 0 3px var(--background),
     0 0 0 5px var(--accent);
@@ -243,7 +244,7 @@
 }
 
 /* 펼침: 키보드 포커스 */
-.card[data-front="true"]:focus-visible .more {
+.card[data-front="true"]:focus-within .more {
   grid-template-rows: 1fr;
   opacity: 1;
 }
@@ -338,6 +339,23 @@
   .arrow:last-child:hover {
     transform: translateX(3px);
   }
+}
+
+/* 카드를 덮는 링크. 옆 카드에서는 카드 자체의 클릭(돌리기)이 살아야 하므로 끈다. */
+.open {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.card:not([data-front="true"]) .open {
+  display: none;
+}
+
+.open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
 }
 
 .srOnly {

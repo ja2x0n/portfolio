@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { useRef, useState } from "react";
 import styles from "./ProjectCarousel.module.css";
 
@@ -170,6 +171,10 @@ export default function ProjectCarousel({
           ringRef.current?.setAttribute("data-dragging", "");
           setDrag(d.dx * DEG_PER_PX);
         }}
+        // 드래그로 끝난 입력이 링크 이동으로 이어지지 않게 한다.
+        onClickCapture={(e) => {
+          if (dragged.current) e.preventDefault();
+        }}
         onPointerUp={release}
         onPointerCancel={release}
         onPointerLeave={(e) => {
@@ -220,7 +225,6 @@ export default function ProjectCarousel({
                 aria-label={`${(i % total) + 1} / ${total}`}
                 // 반복해 채운 카드와 옆 카드는 스크린리더와 키보드에서 뺀다.
                 aria-hidden={!isFront}
-                tabIndex={isFront ? 0 : -1}
                 // 옆 카드를 누르면 그 카드까지 돌린다.
                 onClick={() => {
                   if (!isFront && !dragged.current) turn(offset);
@@ -268,6 +272,17 @@ export default function ProjectCarousel({
                     </div>
                   </div>
                 </div>
+
+                {/*
+                 * 카드 전체를 덮는 링크. 가운데 카드에서만 켠다.
+                 * 진짜 링크여야 키보드·새 탭·오른쪽 클릭이 모두 된다.
+                 */}
+                <Link
+                  href={`/projects/${item.slug}`}
+                  className={styles.open}
+                  aria-label={item.name}
+                  tabIndex={isFront ? 0 : -1}
+                />
               </article>
             );
           })}
