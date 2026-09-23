@@ -6,14 +6,15 @@ import { Link } from "@/i18n/navigation";
 import { useRef, useState } from "react";
 import styles from "./ProjectCarousel.module.css";
 
+/** slug 가 없으면 아직 없는 프로젝트 자리다. 링크도 사진도 없다. */
 type Item = {
-  slug: string;
+  slug: string | null;
   name: string;
-  period: string;
-  stack: string[];
-  image: string | null;
   summary: string;
-  role: string;
+  period?: string;
+  stack?: string[];
+  image?: string | null;
+  role?: string;
 };
 
 type Labels = {
@@ -221,6 +222,7 @@ export default function ProjectCarousel({
                 data-front={isFront}
                 data-distance={Math.min(distance, 3)}
                 data-hover={hover === i}
+                data-empty={!item.slug}
                 aria-roledescription="slide"
                 aria-label={`${(i % total) + 1} / ${total}`}
                 // 반복해 채운 카드와 옆 카드는 스크린리더와 키보드에서 뺀다.
@@ -240,49 +242,56 @@ export default function ProjectCarousel({
                       draggable={false}
                       sizes="(min-width: 768px) 740px, 80vw"
                     />
-                  ) : (
+                  ) : item.slug ? (
                     <span className={styles.placeholder}>
                       {labels.imagePlaceholder}
                     </span>
-                  )}
+                  ) : null}
                 </div>
 
                 {/* 사진 아래쪽을 점점 흐리게 하고 그 위에 설명을 얹는다. */}
                 <div className={styles.info}>
                   <div className={styles.head}>
                     <h3 className={styles.name}>{item.name}</h3>
-                    <p className={styles.period}>
-                      <span className={styles.srOnly}>{labels.period} </span>
-                      {item.period}
-                    </p>
+                    {item.period ? (
+                      <p className={styles.period}>
+                        <span className={styles.srOnly}>{labels.period} </span>
+                        {item.period}
+                      </p>
+                    ) : null}
                   </div>
                   <p className={styles.summary}>{item.summary}</p>
                   {/* 역할·기술은 호버·포커스·탭으로 펼친다. */}
-                  <div className={styles.more}>
-                    <div>
-                      <p className={styles.role}>
-                        <span className={styles.srOnly}>{labels.role} </span>
-                        {item.role}
-                      </p>
-                      <ul className={styles.tags} aria-label={labels.stack}>
-                        {item.stack.map((s) => (
-                          <li key={s}>{s}</li>
-                        ))}
-                      </ul>
+                  {item.role && item.stack ? (
+                    <div className={styles.more}>
+                      <div>
+                        <p className={styles.role}>
+                          <span className={styles.srOnly}>{labels.role} </span>
+                          {item.role}
+                        </p>
+                        <ul className={styles.tags} aria-label={labels.stack}>
+                          {item.stack.map((s) => (
+                            <li key={s}>{s}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                 </div>
 
                 {/*
                  * 카드 전체를 덮는 링크. 가운데 카드에서만 켠다.
                  * 진짜 링크여야 키보드·새 탭·오른쪽 클릭이 모두 된다.
                  */}
-                <Link
-                  href={`/projects/${item.slug}`}
-                  className={styles.open}
-                  aria-label={item.name}
-                  tabIndex={isFront ? 0 : -1}
-                />
+                {item.slug ? (
+                  <Link
+                    href={`/projects/${item.slug}`}
+                    className={styles.open}
+                    aria-label={item.name}
+                    tabIndex={isFront ? 0 : -1}
+                    data-mask
+                  />
+                ) : null}
               </article>
             );
           })}
@@ -299,8 +308,7 @@ export default function ProjectCarousel({
           <ChevronLeft size={20} />
         </button>
         <p className={styles.count} aria-live="polite">
-          <span>{String(current + 1).padStart(2, "0")}</span> /{" "}
-          {String(total).padStart(2, "0")}
+          {items[current].name}
         </p>
         <button
           type="button"

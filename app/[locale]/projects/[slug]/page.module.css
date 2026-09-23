@@ -109,11 +109,148 @@
   letter-spacing: var(--tracking-snug);
 }
 
-.preparing {
+/* 긴 글은 한 줄이 너무 길어지지 않게 폭을 제한한다. */
+.body {
   margin: 0;
+  max-width: 44rem;
+  font-size: var(--text-md);
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  max-width: 44rem;
+  list-style: none;
+  font-size: var(--text-sm);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* 점 대신 짧은 선을 쓴다. 글자 크기에 맞춰 자리를 잡는다. */
+.list li {
+  position: relative;
+  padding-left: var(--space-4);
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  top: 0.75em;
+  left: 0;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--muted);
+}
+
+/* 사용자 흐름. 단계를 순서대로 늘어놓는다. */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  color: var(--accent);
+  font-size: 0.6875rem;
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: var(--space-8) var(--space-12);
+}
+
+.groupTitle {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+.number {
+  color: var(--accent);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+}
+
+.troubles {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.trouble {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+/* 상황·과제·처리·결과. 라벨을 왼쪽에 세우고 내용을 오른쪽에 둔다. */
+.steps2 {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.steps2 > div {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.steps2 dt {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+}
+
+.steps2 dd {
+  margin: 0;
+  max-width: 44rem;
+  font-size: var(--text-sm);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* AI 활용에 덧붙이는 단서. 본문과 구분되게 왼쪽에 선을 둔다. */
+.note {
+  margin: var(--space-4) 0 0;
+  padding-left: var(--space-4);
+  max-width: 44rem;
+  border-left: 2px solid var(--accent);
   color: var(--muted);
   font-size: var(--text-sm);
   font-weight: 300;
+  line-height: 1.7;
+}
+
+.limits {
+  margin-top: var(--space-4);
+  color: var(--muted);
 }
 
 .bottom {
@@ -144,8 +281,9 @@
 }
 
 @media (max-width: 767px) {
-  .meta > div {
-    grid-template-columns: 5rem minmax(0, 1fr);
+  .meta > div,
+  .steps2 > div {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
   }
 
   .media {

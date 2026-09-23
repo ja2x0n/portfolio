@@ -1,27 +1,22 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import Reveal from "@/components/Reveal/Reveal";
 import { projects } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import styles from "./page.module.css";
 
-/**
- * 설계서 `03. 사이트 구조`의 상세 화면 순서.
- * TODO(content): 각 섹션의 내용은 설계서 06-1, 06-2에서 옮긴다.
- */
-const SECTIONS = [
-  "problem",
-  "flow",
-  "role",
-  "features",
-  "troubleshooting",
-  "ai",
-  "result",
-  "learned",
-  "links",
-] as const;
+/** 제목과 항목으로 이루어진 묶음. 담당 역할과 배운 점에 쓴다. */
+type Group = { title: string; items: string[] };
+type Trouble = {
+  title: string;
+  situation: string;
+  task: string;
+  action: string[];
+  outcome: string[];
+};
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -47,15 +42,21 @@ export default async function ProjectDetailPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const index = projects.findIndex((p) => p.slug === slug);
-  if (index === -1) notFound();
-
-  const project = projects[index];
-  // 프로젝트가 둘뿐이라 다음 프로젝트는 순환한다.
-  const next = projects[(index + 1) % projects.length];
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) notFound();
 
   const t = await getTranslations("Projects");
   const d = await getTranslations("ProjectDetail");
+  // 목록은 raw 로 꺼낸다. 문장 하나가 아니라 항목 묶음이기 때문이다.
+  const raw = <T,>(key: string) => d.raw(`${slug}.${key}`) as T;
+
+  const approach = raw<string[]>("approach");
+  const flow = raw<string[]>("flow");
+  const role = raw<Group[]>("role");
+  const troubles = raw<Trouble[]>("troubleshooting");
+  const result = raw<string[]>("result");
+  const limits = raw<string[]>("limits");
+  const learned = raw<Group[]>("learned");
 
   return (
     <main className={styles.main}>
@@ -75,12 +76,24 @@ export default async function ProjectDetailPage({ params }: Props) {
               <dd>{project.period}</dd>
             </div>
             <div>
+              <dt>{d("labels.team")}</dt>
+              <dd>{project.team}</dd>
+            </div>
+            <div>
               <dt>{t("role")}</dt>
               <dd>{t(`items.${slug}.role`)}</dd>
             </div>
             <div>
               <dt>{t("stack")}</dt>
               <dd>{project.stack.join(" · ")}</dd>
+            </div>
+            <div>
+              <dt>{d("labels.tools")}</dt>
+              <dd>{project.tools.join(" · ")}</dd>
+            </div>
+            <div>
+              <dt>{d("labels.result")}</dt>
+              <dd>{result[0]}</dd>
             </div>
           </dl>
 
@@ -102,23 +115,146 @@ export default async function ProjectDetailPage({ params }: Props) {
           </div>
         </header>
 
-        {SECTIONS.map((section) => (
-          <section key={section} className={styles.section}>
-            <h2 className={styles.title}>{d(`sections.${section}`)}</h2>
-            {/* TODO(content): 설계서 06-1, 06-2의 내용을 옮긴다. */}
-            <p className={styles.preparing}>{d("preparing")}</p>
+        <Reveal>
+          <section className={styles.section}>
+            <h2 className={styles.title}>{d("sections.problem")}</h2>
+            <p className={styles.body}>{raw<string>("problem")}</p>
           </section>
-        ))}
+        </Reveal>
+
+        <Reveal>
+          <section className={styles.section}>
+            <h2 className={styles.title}>{d("sections.flow")}</h2>
+            <ul className={styles.list}>
+              {approach.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+            <ol className={styles.steps}>
+              {flow.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className={styles.section}>
+            <h2 className={styles.title}>{d("sections.role")}</h2>
+            <div className={styles.groups}>
+              {role.map((group) => (
+                <div key={group.title}>
+                  <h3 className={styles.groupTitle}>{group.title}</h3>
+                  <ul className={styles.list}>
+                    {group.items.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className={styles.section}>
+            <h2 className={styles.title}>{d("sections.troubleshooting")}</h2>
+            <div className={styles.troubles}>
+              {troubles.map((trouble, i) => (
+                <article key={trouble.title} className={styles.trouble}>
+                  <h3 className={styles.groupTitle}>
+                    <span className={styles.number}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {trouble.title}
+                  </h3>
+                  <dl className={styles.steps2}>
+                    <div>
+                      <dt>{d("labels.situation")}</dt>
+                      <dd>{trouble.situation}</dd>
+                    </div>
+                    {trouble.task ? (
+                      <div>
+                        <dt>{d("labels.task")}</dt>
+                        <dd>{trouble.task}</dd>
+                      </div>
+                    ) : null}
+                    {trouble.action.length > 0 ? (
+                      <div>
+                        <dt>{d("labels.action")}</dt>
+                        <dd>
+                          <ul className={styles.list}>
+                            {trouble.action.map((line) => (
+                              <li key={line}>{line}</li>
+                            ))}
+                          </ul>
+                        </dd>
+                      </div>
+                    ) : null}
+                    <div>
+                      <dt>{d("labels.outcome")}</dt>
+                      <dd>
+                        <ul className={styles.list}>
+                          {trouble.outcome.map((line) => (
+                            <li key={line}>{line}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </div>
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className={styles.section}>
+            <h2 className={styles.title}>{d("sections.ai")}</h2>
+            <p className={styles.body}>{raw<string>("ai")}</p>
+            <p className={styles.note}>{raw<string>("aiNote")}</p>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className={styles.section}>
+            <h2 className={styles.title}>{d("sections.result")}</h2>
+            <ul className={styles.list}>
+              {result.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+            <ul className={`${styles.list} ${styles.limits}`}>
+              {limits.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className={styles.section}>
+            <h2 className={styles.title}>{d("sections.learned")}</h2>
+            <div className={styles.groups}>
+              {learned.map((group) => (
+                <div key={group.title}>
+                  <h3 className={styles.groupTitle}>{group.title}</h3>
+                  <ul className={styles.list}>
+                    {group.items.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
       </article>
 
       <nav className={styles.bottom} aria-label={d("nav")}>
         <Link href="/#projects" className={styles.move}>
           <ArrowLeft size={16} aria-hidden="true" />
           {d("back")}
-        </Link>
-        <Link href={`/projects/${next.slug}`} className={styles.move}>
-          {d("next", { name: next.name })}
-          <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </nav>
     </main>
