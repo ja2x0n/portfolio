@@ -74,6 +74,23 @@
       }
     }
   },
+  "ProjectDetail": {
+    "back": "Back to projects",
+    "next": "Next project · {name}",
+    "nav": "Project navigation",
+    "preparing": "This part is being written.",
+    "sections": {
+      "problem": "The problem",
+      "flow": "Service flow",
+      "role": "My role and contribution",
+      "features": "Key features",
+      "troubleshooting": "Troubleshooting",
+      "ai": "Using AI, and verifying it",
+      "result": "Results and limits",
+      "learned": "What I learned",
+      "links": "GitHub · Deployment"
+    }
+  },
   "Experience": {
     "title": "Experience",
     "items": {

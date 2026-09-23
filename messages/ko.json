@@ -74,6 +74,23 @@
       }
     }
   },
+  "ProjectDetail": {
+    "back": "프로젝트 목록으로",
+    "next": "다음 프로젝트 · {name}",
+    "nav": "프로젝트 이동",
+    "preparing": "내용을 준비하고 있습니다.",
+    "sections": {
+      "problem": "해결하려던 사용자 문제",
+      "flow": "서비스 흐름",
+      "role": "담당 역할과 기여 범위",
+      "features": "주요 기능",
+      "troubleshooting": "Troubleshooting",
+      "ai": "AI 활용과 검증",
+      "result": "결과와 한계",
+      "learned": "배운 점",
+      "links": "GitHub · 배포"
+    }
+  },
   "Experience": {
     "title": "Experience",
     "items": {

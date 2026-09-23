@@ -74,6 +74,23 @@
       }
     }
   },
+  "ProjectDetail": {
+    "back": "プロジェクト一覧へ",
+    "next": "次のプロジェクト · {name}",
+    "nav": "プロジェクト移動",
+    "preparing": "内容を準備しています。",
+    "sections": {
+      "problem": "解決したかったユーザーの課題",
+      "flow": "サービスの流れ",
+      "role": "担当した役割と貢献範囲",
+      "features": "主な機能",
+      "troubleshooting": "Troubleshooting",
+      "ai": "AIの活用と検証",
+      "result": "成果と限界",
+      "learned": "学んだこと",
+      "links": "GitHub · デプロイ"
+    }
+  },
   "Experience": {
     "title": "Experience",
     "items": {
