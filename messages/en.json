@@ -56,7 +56,23 @@
   },
   "Projects": {
     "title": "Projects",
-    "placeholder": "CapTeam and JICHINI are on the way."
+    "carousel": "Featured projects",
+    "prev": "Previous project",
+    "next": "Next project",
+    "period": "Period",
+    "role": "Role",
+    "stack": "Stack",
+    "imagePlaceholder": "Project image",
+    "items": {
+      "capteam": {
+        "summary": "A service that connects student survey data to AI team recommendations, lets admins review, adjust, and approve the results, and carries them through to team operations.",
+        "role": "Team Lead · Planning · UI/UX · Frontend"
+      },
+      "jichini": {
+        "summary": "A service that analyzes users' concerns through an AI chatbot and matches people with similar concerns in 1:1 chats.",
+        "role": "Team Lead · Planning · UI/UX · Frontend"
+      }
+    }
   },
   "Experience": {
     "title": "Experience",
@@ -74,7 +90,7 @@
         "label": "Head of sports, student council"
       },
       "capteam": {
-        "period": "2026.03 — 2026.07",
+        "period": "2026.03 — 2026.08",
         "label": "Grand prize, school capstone · CapTeam"
       },
       "hackathon": {

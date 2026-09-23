@@ -56,7 +56,23 @@
   },
   "Projects": {
     "title": "Projects",
-    "placeholder": "CapTeam과 JICHINI를 준비하고 있습니다."
+    "carousel": "대표 프로젝트",
+    "prev": "이전 프로젝트",
+    "next": "다음 프로젝트",
+    "period": "기간",
+    "role": "역할",
+    "stack": "기술",
+    "imagePlaceholder": "프로젝트 사진 자리",
+    "items": {
+      "capteam": {
+        "summary": "학생 설문 데이터를 AI 팀 추천으로 연결하고, 관리자가 결과를 검토·수정·승인한 뒤 팀 운영까지 이어갈 수 있도록 설계한 서비스",
+        "role": "팀장 · 기획 · UI·UX · Frontend"
+      },
+      "jichini": {
+        "summary": "AI 챗봇을 통해 고민을 분석하고 유사한 고민을 가진 사용자를 매칭해 1:1 채팅으로 연결하는 서비스",
+        "role": "팀장 · 기획 · UI·UX · Frontend"
+      }
+    }
   },
   "Experience": {
     "title": "Experience",
@@ -74,7 +90,7 @@
         "label": "학생회 체육부장"
       },
       "capteam": {
-        "period": "2026.03 — 2026.07",
+        "period": "2026.03 — 2026.08",
         "label": "교내 캡스톤 대상 · CapTeam"
       },
       "hackathon": {
