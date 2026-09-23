@@ -6,6 +6,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/Header/Header";
+import PageMask from "@/components/PageMask/PageMask";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
@@ -86,6 +87,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <NextIntlClientProvider>
             <Header />
             {children}
+            <PageMask />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
