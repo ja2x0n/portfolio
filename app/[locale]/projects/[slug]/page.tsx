@@ -1,15 +1,15 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ChevronDown } from "lucide-react";
+import HoverButton from "@/components/HoverButton/HoverButton";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Reveal from "@/components/Reveal/Reveal";
 import { projects } from "@/content/projects";
-import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import styles from "./page.module.css";
 
 /** 제목과 항목으로 이루어진 묶음. 담당 역할과 배운 점에 쓴다. */
-type Group = { title: string; items: string[] };
+type Group = { title: string; desc?: string; items: string[] };
 type Trouble = {
   title: string;
   situation: string;
@@ -55,48 +55,23 @@ export default async function ProjectDetailPage({ params }: Props) {
   const role = raw<Group[]>("role");
   const troubles = raw<Trouble[]>("troubleshooting");
   const result = raw<string[]>("result");
-  const limits = raw<string[]>("limits");
   const learned = raw<Group[]>("learned");
 
   return (
     <main className={styles.main}>
-      <article>
-        <header className={styles.cover}>
-          <Link href="/#projects" className={styles.back}>
-            <ArrowLeft size={16} aria-hidden="true" />
+      <article className={styles.article}>
+        <div className={styles.top}>
+          <HoverButton
+            href="/#projects"
+            variant="ghost"
+            icon={<ArrowLeft size={16} />}
+            iconFirst
+          >
             {d("back")}
-          </Link>
+          </HoverButton>
+        </div>
 
-          <h1 className={styles.name}>{project.name}</h1>
-          <p className={styles.summary}>{t(`items.${slug}.summary`)}</p>
-
-          <dl className={styles.meta}>
-            <div>
-              <dt>{t("period")}</dt>
-              <dd>{project.period}</dd>
-            </div>
-            <div>
-              <dt>{d("labels.team")}</dt>
-              <dd>{project.team}</dd>
-            </div>
-            <div>
-              <dt>{t("role")}</dt>
-              <dd>{t(`items.${slug}.role`)}</dd>
-            </div>
-            <div>
-              <dt>{t("stack")}</dt>
-              <dd>{project.stack.join(" · ")}</dd>
-            </div>
-            <div>
-              <dt>{d("labels.tools")}</dt>
-              <dd>{project.tools.join(" · ")}</dd>
-            </div>
-            <div>
-              <dt>{d("labels.result")}</dt>
-              <dd>{result[0]}</dd>
-            </div>
-          </dl>
-
+        <header className={styles.hero}>
           <div className={styles.media}>
             {project.image ? (
               <Image
@@ -105,7 +80,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 alt={project.name}
                 fill
                 priority
-                sizes="(min-width: 1024px) 960px, 100vw"
+                sizes="(min-width: 1200px) 1152px, 100vw"
               />
             ) : (
               <span className={styles.placeholder}>
@@ -113,12 +88,75 @@ export default async function ProjectDetailPage({ params }: Props) {
               </span>
             )}
           </div>
+
+          {/* 사진 아래쪽만 흐리게 해서 그 위에 제목과 소개를 얹는다. */}
+          <div className={styles.heroInfo}>
+            <div>
+              <div className={styles.head}>
+                <h1 className={styles.name}>{project.name}</h1>
+                {result[0] ? <p className={styles.award}>{result[0]}</p> : null}
+              </div>
+              <p className={styles.summary}>{t(`items.${slug}.summary`)}</p>
+            </div>
+            {project.links.length > 0 ? (
+              <ul className={styles.links}>
+                {project.links.map((link) => (
+                  <li key={link.href}>
+                    <HoverButton
+                      href={link.href}
+                      variant="onPhoto"
+                      icon={<ArrowUpRight size={18} />}
+                      external
+                    >
+                      {link.label}
+                    </HoverButton>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
         </header>
+
+        <section className={styles.cover}>
+          <h2 className={styles.srOnly}>{d("labels.info")}</h2>
+          <dl className={styles.meta}>
+            <div>
+              <dt>{t("period")}</dt>
+              <dd>{project.period}</dd>
+            </div>
+            <div>
+              <dt>{d("labels.team")}</dt>
+              <dd className={styles.team}>
+                {project.team.map((part) => (
+                  <span key={part.label} data-mine={part.mine}>
+                    {part.label}
+                  </span>
+                ))}
+              </dd>
+            </div>
+            <div>
+              <dt>{t("role")}</dt>
+              <dd>{t(`items.${slug}.role`)}</dd>
+            </div>
+            <div>
+              <dt>{t("stack")}</dt>
+              <dd>
+                <ul className={styles.chips}>
+                  {project.stack.map((name) => (
+                    <li key={name}>{name}</li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </section>
 
         <Reveal>
           <section className={styles.section}>
             <h2 className={styles.title}>{d("sections.problem")}</h2>
-            <p className={styles.body}>{raw<string>("problem")}</p>
+            <p className={styles.body}>
+              {d.rich(`${slug}.problem`, { b: (chunks) => <b>{chunks}</b> })}
+            </p>
           </section>
         </Reveal>
 
@@ -131,8 +169,10 @@ export default async function ProjectDetailPage({ params }: Props) {
               ))}
             </ul>
             <ol className={styles.steps}>
-              {flow.map((step) => (
-                <li key={step}>{step}</li>
+              {flow.map((step, i) => (
+                <li key={step} style={{ "--i": i } as React.CSSProperties}>
+                  {step}
+                </li>
               ))}
             </ol>
           </section>
@@ -145,7 +185,10 @@ export default async function ProjectDetailPage({ params }: Props) {
               {role.map((group) => (
                 <div key={group.title}>
                   <h3 className={styles.groupTitle}>{group.title}</h3>
-                  <ul className={styles.list}>
+                  {group.desc ? (
+                    <p className={styles.lead}>{group.desc}</p>
+                  ) : null}
+                  <ul className={`${styles.list} ${styles.sub}`}>
                     {group.items.map((line) => (
                       <li key={line}>{line}</li>
                     ))}
@@ -161,27 +204,36 @@ export default async function ProjectDetailPage({ params }: Props) {
             <h2 className={styles.title}>{d("sections.troubleshooting")}</h2>
             <div className={styles.troubles}>
               {troubles.map((trouble, i) => (
-                <article key={trouble.title} className={styles.trouble}>
-                  <h3 className={styles.groupTitle}>
+                <details
+                  key={trouble.title}
+                  className={styles.trouble}
+                  open={i === 0}
+                >
+                  <summary className={styles.troubleHead}>
                     <span className={styles.number}>
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    {trouble.title}
-                  </h3>
+                    <span>{trouble.title}</span>
+                    <ChevronDown
+                      className={styles.chevron}
+                      size={18}
+                      aria-hidden="true"
+                    />
+                  </summary>
                   <dl className={styles.steps2}>
                     <div>
-                      <dt>{d("labels.situation")}</dt>
+                      <dt data-star="situation">{d("labels.situation")}</dt>
                       <dd>{trouble.situation}</dd>
                     </div>
                     {trouble.task ? (
                       <div>
-                        <dt>{d("labels.task")}</dt>
+                        <dt data-star="task">{d("labels.task")}</dt>
                         <dd>{trouble.task}</dd>
                       </div>
                     ) : null}
                     {trouble.action.length > 0 ? (
                       <div>
-                        <dt>{d("labels.action")}</dt>
+                        <dt data-star="action">{d("labels.action")}</dt>
                         <dd>
                           <ul className={styles.list}>
                             {trouble.action.map((line) => (
@@ -192,7 +244,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                       </div>
                     ) : null}
                     <div>
-                      <dt>{d("labels.outcome")}</dt>
+                      <dt data-star="outcome">{d("labels.outcome")}</dt>
                       <dd>
                         <ul className={styles.list}>
                           {trouble.outcome.map((line) => (
@@ -202,7 +254,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                       </dd>
                     </div>
                   </dl>
-                </article>
+                </details>
               ))}
             </div>
           </section>
@@ -211,31 +263,16 @@ export default async function ProjectDetailPage({ params }: Props) {
         <Reveal>
           <section className={styles.section}>
             <h2 className={styles.title}>{d("sections.ai")}</h2>
-            <p className={styles.body}>{raw<string>("ai")}</p>
-            <p className={styles.note}>{raw<string>("aiNote")}</p>
-          </section>
-        </Reveal>
-
-        <Reveal>
-          <section className={styles.section}>
-            <h2 className={styles.title}>{d("sections.result")}</h2>
-            <ul className={styles.list}>
-              {result.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-            <ul className={`${styles.list} ${styles.limits}`}>
-              {limits.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
+            <p className={styles.body}>
+              {d.rich(`${slug}.ai`, { b: (chunks) => <b>{chunks}</b> })}
+            </p>
           </section>
         </Reveal>
 
         <Reveal>
           <section className={styles.section}>
             <h2 className={styles.title}>{d("sections.learned")}</h2>
-            <div className={styles.groups}>
+            <div className={styles.notes}>
               {learned.map((group) => (
                 <div key={group.title}>
                   <h3 className={styles.groupTitle}>{group.title}</h3>
@@ -252,10 +289,14 @@ export default async function ProjectDetailPage({ params }: Props) {
       </article>
 
       <nav className={styles.bottom} aria-label={d("nav")}>
-        <Link href="/#projects" className={styles.move}>
-          <ArrowLeft size={16} aria-hidden="true" />
+        <HoverButton
+          href="/#projects"
+          variant="ghost"
+          icon={<ArrowLeft size={16} />}
+          iconFirst
+        >
           {d("back")}
-        </Link>
+        </HoverButton>
       </nav>
     </main>
   );

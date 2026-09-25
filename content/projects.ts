@@ -8,17 +8,19 @@ export const projects = [
     slug: "capteam",
     name: "CapTeam",
     period: "2026.03 — 2026.08",
-    team: "Frontend 1 · Backend 2 · AI 2",
-    stack: [
-      "React",
-      "React Router",
-      "Axios",
-      "CSS Modules",
-      "Zustand",
-      "WebSocket",
-      "STOMP",
+    /** mine: 내가 맡은 자리. 화면에서 강조한다. */
+    team: [
+      { label: "Frontend 1", mine: true },
+      { label: "Backend 2", mine: false },
+      { label: "AI 2", mine: false },
     ],
-    tools: ["Figma", "Codex", "Browser DevTools", "E2E"],
+    stack: ["React", "React Router", "Axios", "CSS Modules", "Zustand"],
     image: "/images/projects/capteam.png",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/ja2x0n/CapTeam-Frontend",
+      },
+    ],
   },
 ] as const;

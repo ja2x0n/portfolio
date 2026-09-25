@@ -6,6 +6,9 @@
   --border: #e6e7ea;
   --surface: #f7f8f9;
   --accent: #0071e3;
+  /* 수상 표기에만 쓰는 강조색. on-dark는 표지의 어두운 막 위에서 테마와 무관하게 쓴다. */
+  --award: #8a6508;
+  --award-on-dark: #e0b850;
   /* 글래스: 반투명 배경 + 얇은 밝은 테두리 + 옅은 그림자 */
   --glass-bg: rgb(255 255 255 / 0.8);
   --glass-border: rgb(0 0 0 / 0.07);
@@ -28,6 +31,7 @@
   --border: #23252a;
   --surface: #0d0e11;
   --accent: #0a84ff;
+  --award: #e0b850;
   --glass-bg: rgb(24 26 31 / 0.78);
   --glass-border: rgb(255 255 255 / 0.09);
   --glass-highlight: rgb(255 255 255 / 0.08);
