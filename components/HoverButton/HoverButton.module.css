@@ -47,6 +47,43 @@
   color: var(--foreground);
 }
 
+/* 사진 위에 놓이는 버튼. 사진이 밝든 어둡든 읽히도록 흰 테두리를 쓴다. */
+.onPhoto {
+  --fill: #ffffff;
+  --icon-move: translate(3px, -3px);
+  min-height: 48px;
+  border-color: rgb(255 255 255 / 0.4);
+  background: rgb(0 0 0 / 0.4);
+  color: #ffffff;
+}
+
+/* 좁은 화면에서는 글이 사진 밖으로 나오므로 보통 버튼처럼 보이게 한다. */
+@media (max-width: 767px) {
+  .onPhoto {
+    --fill: var(--foreground);
+    border-color: var(--border);
+    background: transparent;
+    color: var(--foreground);
+  }
+}
+
+/* 배경과 테두리 없이 글자만. 호버하면 포인트 컬러로 바뀐다. */
+.ghost {
+  --icon-move: translateX(-4px);
+  min-height: 44px;
+  padding: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.ghost::before {
+  display: none;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
 /* 글자 롤링: 두 줄을 겹쳐 두고, 호버 시 위로 한 칸 올린다. */
 .label {
   display: inline-grid;
@@ -90,6 +127,15 @@
     border-color: var(--foreground);
     color: var(--background);
   }
+
+  .ghost:hover {
+    color: var(--accent);
+  }
+
+  .onPhoto:hover {
+    border-color: #ffffff;
+    color: #0b0d12;
+  }
 }
 
 /* 키보드 포커스에서도 같은 효과 */
@@ -112,4 +158,13 @@
 .secondary:focus-visible {
   border-color: var(--foreground);
   color: var(--background);
+}
+
+.ghost:focus-visible {
+  color: var(--accent);
+}
+
+.onPhoto:focus-visible {
+  border-color: #ffffff;
+  color: #0b0d12;
 }
