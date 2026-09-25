@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { setPointerOrigin } from "../pointerOrigin";
 import styles from "./Header.module.css";
 
 /** 화면에는 각 언어의 글자 하나로 보인다. URL은 routing의 ko/en/ja를 그대로 쓴다. */
@@ -57,6 +58,8 @@ export default function LanguageSwitch() {
         ref={buttonRef}
         type="button"
         className={styles.control}
+        onPointerEnter={setPointerOrigin}
+        onPointerLeave={setPointerOrigin}
         aria-label={`${t("language")}: ${names[locale]}`}
         aria-expanded={open}
         aria-controls="language-menu"

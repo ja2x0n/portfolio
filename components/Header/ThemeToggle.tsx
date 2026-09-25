@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 import { flushSync } from "react-dom";
+import { setPointerOrigin } from "../pointerOrigin";
 import styles from "./Header.module.css";
 
 const subscribe = () => () => {};
@@ -32,6 +33,8 @@ export default function ThemeToggle() {
     <button
       type="button"
       className={`${styles.control} ${styles.theme}`}
+      onPointerEnter={setPointerOrigin}
+      onPointerLeave={setPointerOrigin}
       aria-label={dark ? t("toLight") : t("toDark")}
       onClick={() => toggle(dark ? "light" : "dark")}
     >

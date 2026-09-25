@@ -43,7 +43,7 @@
       "validation": "Design & Validation"
     },
     "desc": {
-      "react": "Built the screens and components of CapTeam and JICHINI",
+      "react": "Built the screens and components of CapTeam",
       "reactRouter": "Page routing, separate admin and student routes, protected routes",
       "javascript": "ES6+ syntax and asynchronous handling with Promises and async/await for API request and response flows",
       "learning": "Currently learning",
@@ -67,11 +67,148 @@
       "capteam": {
         "summary": "A service that connects student survey data to AI team recommendations, lets admins review, adjust, and approve the results, and carries them through to team operations.",
         "role": "Team Lead · Planning · UI/UX · Frontend"
-      },
-      "jichini": {
-        "summary": "A service that analyzes users' concerns through an AI chatbot and matches people with similar concerns in 1:1 chats.",
-        "role": "Team Lead · Planning · UI/UX · Frontend"
       }
+    },
+    "upcoming": {
+      "name": "New Project?",
+      "summary": "Space for the next project"
+    }
+  },
+  "ProjectDetail": {
+    "back": "Back to projects",
+    "next": "Next project · {name}",
+    "nav": "Project navigation",
+    "preparing": "This part is being written.",
+    "labels": {
+      "team": "Team",
+      "result": "Result",
+      "tools": "Tools",
+      "situation": "Situation",
+      "task": "Task",
+      "action": "Action",
+      "outcome": "Result",
+      "info": "Project details"
+    },
+    "sections": {
+      "problem": "The problem",
+      "flow": "Service flow",
+      "role": "My role and contribution",
+      "troubleshooting": "Troubleshooting",
+      "ai": "Using AI, and verifying it",
+      "result": "Result",
+      "learned": "What I learned"
+    },
+    "capteam": {
+      "problem": "Surveys alone could not reflect <b>a student's role, skill level and project experience at once.</b> Once teams were formed, notices, logs, plans and chat were scattered, so <b>progress was hard to follow.</b>",
+      "approach": [
+        "Feed survey data into AI team recommendations",
+        "Let an admin review the reasoning, swap members and approve",
+        "Connect the confirmed team and its tools to the student screens",
+        "Bring notices, logs, project plans and chat into one flow"
+      ],
+      "flow": [
+        "Sign in",
+        "Survey",
+        "AI recommendation",
+        "Admin review",
+        "Swap and approve",
+        "Team work",
+        "Notices, logs, plans, chat"
+      ],
+      "role": [
+        {
+          "title": "Service structure and screen design",
+          "items": [
+            "Student and admin flows",
+            "Sign-in, survey, team management, notices, logs, plans and chat screens",
+            "Loading, error and empty states"
+          ],
+          "desc": "Split the service into student and admin roles and designed the screen structure."
+        },
+        {
+          "title": "Access, auth and API flow",
+          "items": [
+            "Separate /admin and /user routes",
+            "Access control with ProtectedRoute",
+            "User and token state with Axios JWT",
+            "Checked access by team, survey and log state"
+          ],
+          "desc": "Divided access by route and tied token state to API calls."
+        },
+        {
+          "title": "AI team creation and management",
+          "items": [
+            "Stored the jobId of each AI task",
+            "Showed progress, success and failure by polling",
+            "Blocked duplicate requests",
+            "Built the review, swap and approval flow"
+          ],
+          "desc": "Tracked AI team creation from the screen through to admin approval."
+        },
+        {
+          "title": "Realtime chat and verification",
+          "items": [
+            "Team chat over STOMP and WebSocket",
+            "Sending, read state and unread badges",
+            "Checked mobile viewports and E2E scenarios"
+          ],
+          "desc": "Built team chat on STOMP and WebSocket and verified it down to mobile."
+        }
+      ],
+      "ai": "<b>The problem definition, service flow and screen design were my own work.</b> In later implementation and maintenance <b>I relied heavily on Codex,</b> and checked what it produced in the browser, in Console and Network, and through builds, lint, E2E and mobile viewports.",
+      "troubleshooting": [
+        {
+          "title": "Duplicate AI team requests and lost progress on reload",
+          "situation": "AI team creation returned a job id and ran on the server. Pressing the button again or reloading could create a duplicate job or lose the progress.",
+          "task": "",
+          "action": [],
+          "outcome": [
+            "Duplicate team creation blocked",
+            "Admins no longer lose track of progress"
+          ]
+        },
+        {
+          "title": "Repeated API calls and rising running cost",
+          "situation": "E2E and Network logs showed dashboard, header, unread and channel summary requests repeating on every screen change and poll. The admin chat list also had an N+1 pattern.",
+          "task": "",
+          "action": [
+            "Recorded that removing the N+1 pattern fully needs a batch API on the backend"
+          ],
+          "outcome": [
+            "Fewer repeated calls and edge requests",
+            "Clear split between frontend fixes and backend work"
+          ]
+        },
+        {
+          "title": "UI and accessibility warnings found through E2E",
+          "situation": "Walking teacher and student flows at 390, 412 and 768px surfaced nested list items, duplicate React keys and horizontal overflow on mobile.",
+          "task": "",
+          "action": [],
+          "outcome": [
+            "Overflow and React warnings gone on the screens I tested",
+            "A verification pass covering access, empty states and exceptions"
+          ]
+        }
+      ],
+      "result": ["Capstone grand prize, 2026 spring semester"],
+      "learned": [
+        {
+          "title": "Screens are not the whole job — data flow and running cost matter",
+          "items": [
+            "Repeated calls affect running cost, not just speed.",
+            "Polling needs a stop condition and a way to resume.",
+            "Frontend fixes and backend changes are different scopes."
+          ]
+        },
+        {
+          "title": "When you build with AI, verification is still yours",
+          "items": [
+            "Code being written is not the same as it working in the real flow.",
+            "Features that carry state — JWT, polling, WebSocket — have to be checked by hand.",
+            "Defining the requirement and verifying the result stay with the developer."
+          ]
+        }
+      ]
     }
   },
   "Experience": {

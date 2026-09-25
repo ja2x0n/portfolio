@@ -148,6 +148,7 @@
   min-width: 44px;
   min-height: 44px;
   padding: 0 var(--space-2);
+  overflow: hidden;
   border: 0;
   border-radius: 999px;
   background: transparent;
@@ -156,28 +157,32 @@
   font-size: var(--text-base);
   font-weight: 600;
   cursor: pointer;
+  transition: box-shadow 0.3s ease;
 }
 
-/* 가운데에서 부풀어 오르는 알약 배경 */
+/* 마우스가 들어온 지점(--x, --y)에서 퍼지는 원. 버튼과 같은 방식이다. */
 .control::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
   z-index: -1;
-  border-radius: inherit;
+  width: 240%;
+  aspect-ratio: 1;
+  border-radius: 50%;
   background: var(--surface);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.55s var(--ease-out);
+}
+
+.control[aria-expanded="true"],
+.control:focus-visible {
   box-shadow: inset 0 0 0 1px var(--border);
-  opacity: 0;
-  transform: scale(0.6);
-  transition:
-    opacity 0.25s ease,
-    transform 0.45s var(--ease-out);
 }
 
 .control[aria-expanded="true"]::before,
 .control:focus-visible::before {
-  opacity: 1;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 /* 언어 코드가 바뀌면 아래에서 올라온다. */
@@ -224,6 +229,10 @@
 /* 테마 버튼은 호버하면 바뀔 테마의 색(배경·글자 반전)으로 칠해진다. */
 .theme::before {
   background: var(--foreground);
+}
+
+.theme:hover,
+.theme:focus-visible {
   box-shadow: none;
 }
 
@@ -243,9 +252,12 @@
 }
 
 @media (hover: hover) {
+  .control:hover {
+    box-shadow: inset 0 0 0 1px var(--border);
+  }
+
   .control:hover::before {
-    opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .theme:hover {

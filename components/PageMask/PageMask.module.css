@@ -1,0 +1,27 @@
+/*
+ * 페이지가 바뀌는 동안 배경색이 화면을 덮는다.
+ * 덮는 동안에는 뒤쪽을 누를 수 없어야 한다.
+ */
+.mask {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--background);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mask[data-state="covering"],
+.mask[data-state="covered"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mask[data-state="covering"] {
+  transition: opacity 0.32s ease-out;
+}
+
+.mask[data-state="opening"] {
+  opacity: 0;
+  transition: opacity 0.42s ease-in;
+}

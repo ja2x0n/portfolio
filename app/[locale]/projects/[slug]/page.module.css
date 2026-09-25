@@ -1,0 +1,665 @@
+.main {
+  padding: var(--header-height) var(--content-inline) var(--section-gap);
+}
+
+/*
+ * 표지 사진. 본문 폭에 갇히지 않고 화면을 가로로 꽉 채운다.
+ * 좌우 여백만큼 밖으로 넓혀서 화면 끝까지 닿게 한다.
+ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  max-width: 60rem;
+  margin: 0 auto var(--space-16);
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--accent) 38%, #0b0d12),
+    #0b0d12 70%
+  );
+}
+
+.photo {
+  object-fit: cover;
+  animation: photo-in 2s var(--ease-out) both;
+}
+
+/* 한 번만 돌고 멈춘다. */
+@keyframes photo-in {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgb(255 255 255 / 0.45);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+}
+
+/*
+ * 돌아가기는 사진 위가 아니라 사진 앞에 둔다.
+ * 사진이 흰색이면 사진 위의 글자는 읽히지 않는다.
+ */
+.top {
+  max-width: 60rem;
+  margin: 0 auto var(--space-4);
+}
+
+/*
+ * 사진 아래쪽만 흐리게 하고 그 위에 제목·소개·링크를 얹는다.
+ * 블러와 어두운 막을 위로 갈수록 옅게 해서 사진과 경계선 없이 이어지게 한다.
+ */
+.heroInfo {
+  position: absolute;
+  inset: auto 0 0;
+  /* 자기 안에서만 쌓임 순서를 따지게 한다. 없으면 막이 사진 뒤로 들어간다. */
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-6) var(--space-8);
+  padding: var(--space-16) var(--space-8) var(--space-8);
+  color: #ffffff;
+  text-shadow: 0 1px 14px rgb(0 0 0 / 0.5);
+}
+
+.heroInfo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.8) 0%,
+    rgb(0 0 0 / 0.55) 65%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(to top, #000 72%, transparent);
+  mask-image: linear-gradient(to top, #000 72%, transparent);
+}
+
+/* 수상은 제목 위에 한 줄로만 둔다. 칩이나 상자를 쓰면 표지가 무거워진다. */
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.award {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  color: var(--award-on-dark);
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+}
+
+.award::before {
+  content: "";
+  width: 1.5rem;
+  height: 2px;
+  background: currentColor;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* 한 줄 소개는 폭을 좁히지 않는다. 줄이 덜 바뀌어야 한 문장으로 읽힌다. */
+.summary {
+  margin: 0;
+  max-width: 34rem;
+  color: rgb(255 255 255 / 0.88);
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 기간부터 결과까지. 표지 아래에 한 줄씩 늘어놓는다. */
+.cover {
+  max-width: 60rem;
+  margin: 0 auto var(--space-8);
+}
+
+.meta {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.meta > div {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: baseline;
+}
+
+.meta dt {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+}
+
+.meta dd {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+/* 기술·도구는 항목 수가 많다. 칩으로 나눠 하나씩 읽히게 한다. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* 팀 구성에서 내가 맡은 자리만 드러낸다. */
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.team span:not(:last-child)::after {
+  content: "·";
+  margin-left: var(--space-2);
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.team span[data-mine="true"] {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 섹션마다 번호를 매겨 어디까지가 한 덩어리인지 보이게 한다. */
+.article {
+  counter-reset: section;
+}
+
+.section {
+  position: relative;
+  max-width: 60rem;
+  margin: 0 auto var(--space-8);
+  padding-top: var(--space-8);
+  counter-increment: section;
+}
+
+/* 화면에 들어오면 구분선이 왼쪽에서 오른쪽으로 그어진다. */
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--border);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.9s var(--ease-out);
+}
+
+[data-shown="true"] .section::before {
+  transform: scaleX(1);
+}
+
+.title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+.title::before {
+  content: counter(section, decimal-leading-zero);
+  color: var(--accent);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+}
+
+.body {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 1.85;
+}
+
+/* 강조는 색만 바꾼다. 굵기까지 바꾸면 문장의 흐름이 끊긴다. */
+.body b {
+  color: var(--accent);
+  font-weight: inherit;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  max-width: 48rem;
+  list-style: none;
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+/* 점 대신 짧은 선을 쓴다. 글자 크기에 맞춰 자리를 잡는다. */
+.list li {
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 0.625rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* 사용자 흐름. 단계를 순서대로 늘어놓는다. */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s var(--ease-out);
+  /* 순서가 있는 내용이라 앞 칸부터 하나씩 들어온다. */
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+[data-shown="true"] .steps li {
+  opacity: 1;
+  transform: none;
+}
+
+.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  color: var(--accent);
+  font-size: var(--text-xs);
+}
+
+/*
+ * 담당 역할. 번호 칸을 따로 두면 제목 길이에 따라 줄이 어긋나 보인다.
+ * 대신 왼쪽에 강조선 하나를 두어 들여쓰기를 고정하고, 번호는 제목과 같은 줄에 붙인다.
+ */
+.groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: var(--space-12);
+  column-gap: var(--space-12);
+  counter-reset: group;
+}
+
+.groups > div {
+  padding-left: var(--space-6);
+  border-left: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  counter-increment: group;
+}
+
+.groups .list {
+  max-width: none;
+}
+
+.lead {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.groupTitle {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-6);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+.groupTitle::before {
+  content: counter(group, decimal-leading-zero);
+  color: var(--accent);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+}
+
+/*
+ * 배운 점은 순서가 아니라 묶음이다. 작은 번호 대신 크고 옅은 숫자를 왼쪽에 세워
+ * 목록이 아니라 장(章)처럼 읽히게 한다.
+ */
+.notes {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.notes > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.notes > div::before {
+  content: "";
+  grid-row: 1 / 3;
+  align-self: start;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: calc((var(--text-lg) * 1.2 - 0.5rem) / 2);
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.notes .groupTitle {
+  margin-bottom: var(--space-3);
+}
+
+.notes .groupTitle::before {
+  content: none;
+}
+
+.number {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+}
+
+.troubles {
+  display: grid;
+}
+
+/* 세 건이 모두 펼쳐져 있으면 페이지가 길어진다. 제목만 두고 눌러서 편다. */
+.trouble:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.trouble {
+  interpolate-size: allow-keywords;
+}
+
+.troubleHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-2);
+  list-style: none;
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* 마지막 항목이 닫혀 있으면 그 아래 여백이 구분선까지 그대로 남는다. */
+.trouble:last-child .troubleHead {
+  padding-bottom: var(--space-2);
+}
+
+.troubleHead::-webkit-details-marker {
+  display: none;
+}
+
+.troubleHead:hover {
+  color: var(--accent);
+}
+
+.troubleHead:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.troubleHead > span:nth-child(2) {
+  flex: 1;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.trouble[open] .chevron {
+  transform: rotate(180deg);
+}
+
+/* 열고 닫을 때 높이가 부드럽게 늘고 준다. 지원하지 않는 브라우저는 바로 열린다. */
+.trouble::details-content {
+  block-size: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    block-size 0.45s var(--ease-out),
+    opacity 0.35s ease,
+    content-visibility 0.45s allow-discrete;
+}
+
+.trouble[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+}
+
+/* 상황·과제·처리·결과. 단계마다 색을 달리해 한눈에 구분되게 한다. */
+.steps2 {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: var(--space-2) var(--space-2) var(--space-8);
+}
+
+.steps2 > div {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.steps2 dt {
+  align-self: start;
+  padding: 0.25rem 0;
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-align: center;
+}
+
+.steps2 dt[data-star="situation"] {
+  background: color-mix(in srgb, var(--muted) 18%, transparent);
+  color: var(--foreground);
+}
+
+.steps2 dt[data-star="task"] {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: color-mix(in srgb, var(--accent) 70%, var(--foreground));
+}
+
+.steps2 dt[data-star="action"] {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+  color: color-mix(in srgb, var(--accent) 70%, var(--foreground));
+}
+
+.steps2 dt[data-star="outcome"] {
+  background: var(--accent);
+  color: var(--background);
+}
+
+.steps2 dd {
+  margin: 0;
+  max-width: 48rem;
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  max-width: 60rem;
+  margin: 0 auto;
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 899px) {
+  .groups {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-8);
+  }
+
+  /* 링크 버튼을 제목·소개 아래 줄로 내린다. */
+  .heroInfo {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-12) var(--space-6) var(--space-6);
+  }
+
+  .summary {
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /*
+   * 좁은 화면에서는 글이 사진을 다 덮는다. 제목과 소개를 사진 아래로 내린다.
+   * 사진 비율도 3:2로 줄인다. 4:3까지 좁히면 좌우가 많이 잘린다.
+   */
+  .hero {
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  .media {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 14px;
+  }
+
+  .heroInfo {
+    position: static;
+    isolation: auto;
+    padding: var(--space-6) 0 0;
+    color: var(--foreground);
+    text-shadow: none;
+  }
+
+  .heroInfo::before {
+    display: none;
+  }
+
+  .award {
+    color: var(--award);
+  }
+
+  .summary {
+    color: var(--muted);
+  }
+
+  .meta > div,
+  .steps2 > div {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  /* 칩이 들어간 줄은 좁은 칸에 갇히면 네댓 줄로 쌓인다. 라벨을 위로 올린다. */
+  .meta > div:has(.chips) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+  }
+}
