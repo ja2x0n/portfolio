@@ -5,6 +5,7 @@ import Experience from "@/components/sections/Experience";
 import Home from "@/components/sections/Home";
 import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
+import Values from "@/components/sections/Values";
 
 export default async function HomePage({
   params,
@@ -18,6 +19,7 @@ export default async function HomePage({
     <main>
       <Home />
       <About />
+      <Values />
       <TechStack />
       <Projects />
       <Experience />
