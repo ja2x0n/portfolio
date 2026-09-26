@@ -16,12 +16,12 @@
   },
   "About": {
     "title": "About",
-    "heading": "From planning to screens, I build it through with the team.",
+    "greeting": "Hello, I'm Heo Jae Won, a frontend developer.",
     "body": [
-      "As team lead four times, I led planning, role assignment and scheduling.",
+      "From planning to screens, I build it through with the team. As team lead four times, I led planning, role assignment and scheduling.",
       "I actively use AI tools to work more productively, and keep verifying the code along the way."
     ],
-    "photoAlt": "Portrait of Jaewon Heo",
+    "photoAlt": "Portrait of Heo Jae Won",
     "stats": {
       "leader": {
         "value": "4",
