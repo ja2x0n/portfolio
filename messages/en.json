@@ -33,6 +33,27 @@
       }
     }
   },
+  "Values": {
+    "title": "Values",
+    "headline": [
+      "Not stopping at features,",
+      "a developer who checks and fixes to the end"
+    ],
+    "items": [
+      {
+        "title": "Leading a team to the end",
+        "body": "Led planning through scheduling as team lead four times. On CapTeam I designed the student and admin screen structure as <b>the only frontend developer</b>, and the project won the <b>school capstone grand prize</b>."
+      },
+      {
+        "title": "Beyond the screen, into operations",
+        "body": "Found that repeated API calls drive not only screen speed but <b>running cost</b>, and cut them down. I keep a record of what the frontend can solve and what needs a backend change."
+      },
+      {
+        "title": "Verifying after using AI",
+        "body": "I check what AI produces on <b>the screen, Network, E2E and mobile viewports</b>. Code being written and code working in the real service are two different things."
+      }
+    ]
+  },
   "TechStack": {
     "title": "Tech Stack",
     "note": "Rather than listing names, each entry says where I actually used it.",
