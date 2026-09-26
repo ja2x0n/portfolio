@@ -62,6 +62,7 @@
     "period": "Period",
     "role": "Role",
     "stack": "Stack",
+    "viewDetail": "View project",
     "imagePlaceholder": "Project image",
     "items": {
       "capteam": {
