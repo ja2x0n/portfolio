@@ -36,22 +36,26 @@
   "TechStack": {
     "title": "Tech Stack",
     "note": "Rather than listing names, each entry says where I actually used it.",
+    "learningBadge": "Learning",
     "groups": {
       "frontend": "Frontend",
       "stateData": "State & Data",
-      "styling": "Styling",
-      "validation": "Design & Validation"
+      "styling": "Styling"
     },
-    "desc": {
-      "react": "Built the screens and components of CapTeam",
-      "reactRouter": "Page routing, separate admin and student routes, protected routes",
-      "javascript": "ES6+ syntax and asynchronous handling with Promises and async/await for API request and response flows",
-      "learning": "Currently learning",
-      "zustand": "Global state such as the signed-in user and tokens in CapTeam",
-      "axios": "REST API requests with JWT and the shared request flow",
-      "cssModules": "Scoped styles per component, fixing global class collisions",
-      "e2e": "Checked permissions, error flows, responsive layout, repeated API calls and React warnings",
-      "codex": "Code drafts, UI edits, API tracing, warning analysis, E2E scenario checks"
+    "moreLabel": "Other stack",
+    "points": {
+      "react": [
+        "Split the UI into components and designed interfaces to reuse.",
+        "Managed local state for inputs, modals, loading and errors with useState.",
+        "Handled routing and dynamic parameters with React Router, including navigation from code.",
+        "Called the backend API with axios, and managed the auth flow and login session globally with a custom hook and Zustand."
+      ],
+      "javascript": [
+        "Wrote code on ES6+ syntax.",
+        "Shaped data for rendering with array methods such as map, filter, find and slice.",
+        "Handled async flows and errors with async/await, Promises and try/catch/finally.",
+        "Worked with browser storage through localStorage and JSON.parse/stringify."
+      ]
     }
   },
   "Projects": {

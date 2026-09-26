@@ -36,22 +36,26 @@
   "TechStack": {
     "title": "Tech Stack",
     "note": "기술 이름만 나열하지 않고, 실제로 사용한 상황을 함께 적었습니다.",
+    "learningBadge": "배우는 중",
     "groups": {
       "frontend": "Frontend",
       "stateData": "State & Data",
-      "styling": "Styling",
-      "validation": "Design & Validation"
+      "styling": "Styling"
     },
-    "desc": {
-      "react": "CapTeam의 화면 및 컴포넌트 구현",
-      "reactRouter": "페이지 이동, 관리자·학생 라우트 분리, 보호 라우트 구성",
-      "javascript": "ES6+ 문법과 Promise·async/await 기반 비동기 처리로 API 요청과 응답 흐름 구현",
-      "learning": "현재 학습 중",
-      "zustand": "CapTeam의 로그인 사용자와 토큰 등 전역 상태 관리",
-      "axios": "JWT를 포함한 REST API 요청과 공통 연동 흐름",
-      "cssModules": "컴포넌트별 스타일 범위 분리와 전역 클래스 충돌 개선",
-      "e2e": "권한, 예외 흐름, 반응형, 반복 API 요청과 React 경고 검증",
-      "codex": "코드 초안, UI 수정, API 추적, 경고 분석, E2E 시나리오 점검"
+    "moreLabel": "그 외 기술 스택",
+    "points": {
+      "react": [
+        "컴포넌트 단위로 화면을 나누고 재사용할 인터페이스를 설계했습니다.",
+        "useState로 입력값, 모달, 로딩, 에러 상태를 관리했습니다.",
+        "React Router로 라우팅과 동적 파라미터를 다루고, 코드에서 직접 페이지를 이동시켰습니다.",
+        "axios로 백엔드 API와 통신하고, Custom Hook과 Zustand로 인증 흐름과 로그인 세션을 전역에서 관리했습니다."
+      ],
+      "javascript": [
+        "ES6+ 문법을 기준으로 코드를 작성했습니다.",
+        "map, filter, find, slice 같은 배열 메서드로 데이터를 가공해 화면에 그렸습니다.",
+        "async/await, Promise, try/catch/finally로 비동기 흐름과 예외를 처리했습니다.",
+        "localStorage와 JSON.parse/stringify로 브라우저 저장소의 데이터를 다뤘습니다."
+      ]
     }
   },
   "Projects": {

@@ -36,22 +36,26 @@
   "TechStack": {
     "title": "Tech Stack",
     "note": "技術名を並べるだけでなく、実際に使った場面を添えています。",
+    "learningBadge": "学習中",
     "groups": {
       "frontend": "Frontend",
       "stateData": "State & Data",
-      "styling": "Styling",
-      "validation": "Design & Validation"
+      "styling": "Styling"
     },
-    "desc": {
-      "react": "CapTeamの画面およびコンポーネントの実装",
-      "reactRouter": "ページ遷移、管理者と学生のルート分離、保護ルートの構成",
-      "javascript": "ES6+の構文とPromise・async/awaitによる非同期処理で、APIのリクエストとレスポンスの流れを実装",
-      "learning": "現在学習中",
-      "zustand": "CapTeamのログインユーザーやトークンなどのグローバル状態管理",
-      "axios": "JWTを含むREST APIリクエストと共通の連携フロー",
-      "cssModules": "コンポーネント単位のスタイル分離と、グローバルクラスの衝突の改善",
-      "e2e": "権限、例外フロー、レスポンシブ、APIの重複リクエストとReactの警告の検証",
-      "codex": "コードの下書き、UI修正、APIの追跡、警告の分析、E2Eシナリオの点検"
+    "moreLabel": "その他の技術スタック",
+    "points": {
+      "react": [
+        "コンポーネント単位で画面を分け、再利用できるインターフェースを設計しました。",
+        "useState で入力値・モーダル・ローディング・エラーの状態を管理しました。",
+        "React Router でルーティングと動的パラメータを扱い、コードから画面遷移を行いました。",
+        "axios でバックエンド API と通信し、Custom Hook と Zustand で認証フローとログインセッションをグローバルに管理しました。"
+      ],
+      "javascript": [
+        "ES6+ の構文でコードを書きました。",
+        "map・filter・find・slice などの配列メソッドでデータを加工し、画面に描画しました。",
+        "async/await・Promise・try/catch/finally で非同期処理と例外を扱いました。",
+        "localStorage と JSON.parse/stringify でブラウザストレージのデータを扱いました。"
+      ]
     }
   },
   "Projects": {
