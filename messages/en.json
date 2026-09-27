@@ -234,6 +234,13 @@
   },
   "Experience": {
     "title": "Experience",
+    "awardsLabel": "Awards",
+    "activityLabel": "Activity & Record",
+    "educationLabel": "Education",
+    "education": {
+      "year": "2025 — 2028",
+      "status": "Expected graduation"
+    },
     "items": {
       "classLeader": {
         "period": "2026.08 — Present",
@@ -253,7 +260,7 @@
       },
       "hackathon": {
         "period": "2026.07",
-        "label": "3rd place, school hackathon · Byeongi"
+        "label": "Excellence Award (3rd place), school hackathon · Byeongi"
       },
       "portfolioAward": {
         "period": "2026.06",
