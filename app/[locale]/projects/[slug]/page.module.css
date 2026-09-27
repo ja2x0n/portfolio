@@ -40,17 +40,6 @@
   }
 }
 
-.placeholder {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: rgb(255 255 255 / 0.45);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-}
-
 /*
  * 돌아가기는 사진 위가 아니라 사진 앞에 둔다.
  * 사진이 흰색이면 사진 위의 글자는 읽히지 않는다.

@@ -78,9 +78,6 @@
   },
   "Projects": {
     "title": "Projects",
-    "carousel": "대표 프로젝트",
-    "prev": "이전 프로젝트",
-    "next": "다음 프로젝트",
     "period": "기간",
     "role": "역할",
     "stack": "기술",
@@ -100,7 +97,6 @@
     "labels": {
       "team": "팀 구성",
       "result": "결과",
-      "tools": "도구",
       "situation": "상황",
       "task": "과제",
       "action": "처리",

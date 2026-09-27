@@ -82,11 +82,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 priority
                 sizes="(min-width: 1200px) 1152px, 100vw"
               />
-            ) : (
-              <span className={styles.placeholder}>
-                {t("imagePlaceholder")}
-              </span>
-            )}
+            ) : null}
           </div>
 
           {/* 사진 아래쪽만 흐리게 해서 그 위에 제목과 소개를 얹는다. */}

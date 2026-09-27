@@ -78,9 +78,6 @@
   },
   "Projects": {
     "title": "Projects",
-    "carousel": "代表プロジェクト",
-    "prev": "前のプロジェクト",
-    "next": "次のプロジェクト",
     "period": "期間",
     "role": "役割",
     "stack": "技術",
@@ -100,7 +97,6 @@
     "labels": {
       "team": "チーム構成",
       "result": "成果",
-      "tools": "ツール",
       "situation": "状況",
       "task": "課題",
       "action": "対応",

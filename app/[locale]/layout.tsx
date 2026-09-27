@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import PageMask from "@/components/PageMask/PageMask";
+import { siteUrl } from "@/content/site";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
@@ -65,7 +66,29 @@ export async function generateMetadata({
 }: Omit<Props, "children">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Meta" });
-  return { title: t("title"), description: t("description") };
+  const title = t("title");
+  const description = t("description");
+
+  // 언어별 주소를 서로 가리켜 검색 엔진이 같은 문서의 번역임을 알게 한다.
+  const languages = Object.fromEntries(
+    routing.locales.map((id) => [id, `/${id}`]),
+  );
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
+    alternates: { canonical: `/${locale}`, languages },
+    openGraph: {
+      type: "website",
+      siteName: "Heo Jae Won",
+      url: `/${locale}`,
+      locale,
+      title,
+      description,
+    },
+    twitter: { card: "summary_large_image", title, description },
+  };
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
