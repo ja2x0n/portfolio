@@ -88,16 +88,11 @@
     "role": "Role",
     "stack": "Stack",
     "viewDetail": "View project",
-    "imagePlaceholder": "Project image",
     "items": {
       "capteam": {
         "summary": "A service that connects student survey data to AI team recommendations, lets admins review, adjust, and approve the results, and carries them through to team operations.",
         "role": "Team Lead · Planning · UI/UX · Frontend"
       }
-    },
-    "upcoming": {
-      "name": "New Project?",
-      "summary": "Space for the next project"
     }
   },
   "ProjectDetail": {

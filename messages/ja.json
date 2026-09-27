@@ -85,16 +85,11 @@
     "role": "役割",
     "stack": "技術",
     "viewDetail": "詳しく見る",
-    "imagePlaceholder": "プロジェクト画像",
     "items": {
       "capteam": {
         "summary": "学生アンケートのデータをAIによるチーム推薦につなげ、管理者が結果を確認・修正・承認したうえでチーム運営まで続けられるよう設計したサービス",
         "role": "チームリーダー · 企画 · UI/UX · Frontend"
       }
-    },
-    "upcoming": {
-      "name": "New Project?",
-      "summary": "次のプロジェクトの場所"
     }
   },
   "ProjectDetail": {
