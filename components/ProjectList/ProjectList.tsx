@@ -3,9 +3,8 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import styles from "./ProjectList.module.css";
 
-/** slug 가 없으면 아직 없는 프로젝트 자리다. 링크도 사진도 없다. */
 type Item = {
-  slug: string | null;
+  slug: string;
   name: string;
   summary: string;
   period?: string;
@@ -13,7 +12,7 @@ type Item = {
   image?: string | null;
 };
 
-type Labels = { viewDetail: string; imagePlaceholder: string };
+type Labels = { viewDetail: string };
 
 /**
  * 프로젝트 목록. 한 줄에 하나씩, 왼쪽에 표지 오른쪽에 설명을 둔다.
@@ -29,9 +28,13 @@ export default function ProjectList({
 }) {
   return (
     <ul className={styles.list}>
-      {items.map((item, i) => {
-        const inner = (
-          <>
+      {items.map((item, i) => (
+        <li key={item.name} style={{ "--i": i } as React.CSSProperties}>
+          <Link
+            href={`/projects/${item.slug}`}
+            className={styles.row}
+            data-mask
+          >
             <div className={styles.cover}>
               {item.image ? (
                 <Image
@@ -41,11 +44,7 @@ export default function ProjectList({
                   fill
                   sizes="(min-width: 768px) 46vw, 92vw"
                 />
-              ) : (
-                <span className={styles.placeholder}>
-                  {labels.imagePlaceholder}
-                </span>
-              )}
+              ) : null}
             </div>
 
             <div className={styles.body}>
@@ -69,38 +68,18 @@ export default function ProjectList({
                 <p className={styles.period}>{item.period}</p>
               ) : null}
 
-              {item.slug ? (
-                <span className={styles.go}>
-                  {labels.viewDetail}
-                  <ArrowRight
-                    className={styles.arrow}
-                    size={16}
-                    aria-hidden="true"
-                  />
-                </span>
-              ) : null}
+              <span className={styles.go}>
+                {labels.viewDetail}
+                <ArrowRight
+                  className={styles.arrow}
+                  size={16}
+                  aria-hidden="true"
+                />
+              </span>
             </div>
-          </>
-        );
-
-        return (
-          <li key={item.name} style={{ "--i": i } as React.CSSProperties}>
-            {item.slug ? (
-              <Link
-                href={`/projects/${item.slug}`}
-                className={styles.row}
-                data-mask
-              >
-                {inner}
-              </Link>
-            ) : (
-              <div className={styles.row} data-empty="true">
-                {inner}
-              </div>
-            )}
-          </li>
-        );
-      })}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }
