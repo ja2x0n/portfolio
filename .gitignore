@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Claude Code 로컬 설정
 /.claude/
+
+# Playwright MCP 실행 산출물
+.playwright-mcp/
