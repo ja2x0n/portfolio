@@ -286,6 +286,11 @@
   },
   "Contact": {
     "title": "Contact",
-    "note": "Reach me through any of these."
+    "headline": [
+      "Building services that are convenient",
+      "and made for the people using them."
+    ],
+    "note": "I'm looking forward to hearing from you.",
+    "sendMail": "Send an email"
   }
 }
