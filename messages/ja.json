@@ -286,5 +286,19 @@
     "headline": ["便利で、使う人のための", "サービスをつくっていきたいです。"],
     "note": "ご連絡をお待ちしています。",
     "sendMail": "メールを送る"
+  },
+  "Footer": {
+    "navLabel": "ページ内リンク",
+    "nav": {
+      "about": "About",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "rights": "© 2026 Heo Jae Won",
+    "note": [
+      "企画から画面まで、チームと最後までつくります。",
+      "ご連絡をお待ちしています。"
+    ],
+    "top": "トップへ"
   }
 }

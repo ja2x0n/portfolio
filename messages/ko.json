@@ -300,5 +300,19 @@
     "headline": ["편리하고 사용자를 위한 서비스를", "만들어 나가고 싶습니다."],
     "note": "여러분의 연락을 기다립니다.",
     "sendMail": "메일 보내기"
+  },
+  "Footer": {
+    "navLabel": "둘러보기",
+    "nav": {
+      "about": "About",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "rights": "© 2026 Heo Jae Won",
+    "note": [
+      "기획부터 화면까지, 팀과 함께 끝까지 만듭니다.",
+      "여러분의 연락을 기다립니다."
+    ],
+    "top": "맨 위로"
   }
 }
