@@ -56,27 +56,24 @@
   },
   "TechStack": {
     "title": "Tech Stack",
-    "note": "Rather than listing names, each entry says where I actually used it.",
+    "headline": "I pick the tool the work calls for,\nand record where and why I used it",
+    "note": "Each entry carries the context in which I actually used it.",
     "learningBadge": "Learning",
     "groups": {
       "frontend": "Frontend",
       "stateData": "State & Data",
       "styling": "Styling"
     },
-    "moreLabel": "Other stack",
-    "points": {
-      "react": [
-        "Split the UI into components and designed interfaces to reuse.",
-        "Managed local state for inputs, modals, loading and errors with useState.",
-        "Handled routing and dynamic parameters with React Router, including navigation from code.",
-        "Called the backend API with axios, and managed the auth flow and login session globally with a custom hook and Zustand."
-      ],
-      "javascript": [
-        "Wrote code on ES6+ syntax.",
-        "Shaped data for rendering with array methods such as map, filter, find and slice.",
-        "Handled async flows and errors with async/await, Promises and try/catch/finally.",
-        "Worked with browser storage through localStorage and JSON.parse/stringify."
-      ]
+    "desc": {
+      "react": "Split screens into components and reused repeated UI behind a defined interface. Organised the states a screen can hold — inputs, modals, loading, errors — with useState, and moved flows outside the screen into custom hooks so components stay focused on rendering.",
+      "javascript": "Write on ES6+ syntax. Shape server responses to the screen's structure with map, filter, find and slice, and handle async flows with async/await and Promises. Design the failure path alongside the happy path with try/catch/finally, so a failed request never leaves the user with an empty screen.",
+      "reactRouter": "Used the URL as the unit of a screen, splitting routes and separating detail views with dynamic parameters. Controlled navigation from code as well as from links, so a screen could hand off once its work was done.",
+      "zustand": "Managed auth state and the login session in a global store, shared across screens. Kept the state outside the component tree so screens read it directly without passing props, and paired it with a custom hook to keep call sites simple.",
+      "axios": "Owned communication with the backend API. Found that repeated calls drive not only response time but server running cost, and reduced the number of calls. Recorded what the frontend could solve and what required a backend change.",
+      "cssModules": "Isolate styles per component so class names never collide. Colour, spacing and typography live as CSS variables in one place, and light and dark themes swap behind the same variable names.",
+      "nextjs": "Learning the App Router and server component model — where to place the boundary between rendering and data fetching, and how far the code shipped in the client bundle can be reduced.",
+      "typescript": "Learning to catch errors before runtime with types: defining a function's input and output first, and making the points where a value may be absent visible in the type.",
+      "tailwind": "Learning utility-class styling, measured against the CSS Modules I use today: which approach stays easier to read and change as a project grows."
     }
   },
   "Projects": {

@@ -9,16 +9,13 @@ export const skillGroupIds = ["frontend", "stateData", "styling"] as const;
 export type SkillGroupId = (typeof skillGroupIds)[number];
 
 export type Skill = {
+  /** messages 의 TechStack.desc 키 */
+  id: string;
   name: string;
   group: SkillGroupId;
-  /**
-   * 설명을 붙일 주요 기술의 messages 키(TechStack.points).
-   * 이 값이 있으면 칩이 아니라 설명과 함께 위에 놓인다.
-   */
-  points?: string;
   /** public 기준 로고 경로 */
   logo: string;
-  /** 아직 실제로 쓰지 않은 기술. 화면에서 사용 경험과 구분해 표시한다. */
+  /** 아직 실제로 쓰지 않은 기술. 화면에서 사용 경험과 구분해 아래에 따로 둔다. */
   learning?: boolean;
   /**
    * 가로로 긴 글자형 로고. 아이콘형과 같은 규칙으로 맞추면 높이에 눌려 작아지므로
@@ -27,53 +24,65 @@ export type Skill = {
   wordmark?: boolean;
 };
 
+/** 위에서부터 읽는 순서다. 실제로 쓴 기술을 앞에, 배우는 중인 기술을 뒤에 둔다. */
 export const skills: Skill[] = [
   {
+    id: "react",
     name: "React",
     group: "frontend",
-    points: "react",
     logo: "/images/logos/react.png",
   },
   {
+    id: "javascript",
+    name: "JavaScript",
+    group: "frontend",
+    logo: "/images/logos/javascript.png",
+  },
+  {
+    id: "reactRouter",
     name: "React Router",
     group: "frontend",
     logo: "/images/logos/react-router.png",
   },
   {
-    name: "JavaScript",
-    group: "frontend",
-    points: "javascript",
-    logo: "/images/logos/javascript.png",
-  },
-  {
-    name: "Next.js",
-    group: "frontend",
-    logo: "/images/logos/nextjs.png",
-    learning: true,
-  },
-  {
-    name: "TypeScript",
-    group: "frontend",
-    logo: "/images/logos/typescript.png",
-    learning: true,
-  },
-  {
+    id: "zustand",
     name: "Zustand",
     group: "stateData",
     logo: "/images/logos/zustand.png",
   },
   {
+    id: "axios",
     name: "Axios",
     group: "stateData",
     logo: "/images/logos/axios.png",
     wordmark: true,
   },
   {
+    // TODO(decision): 설명이 이 저장소의 사용 방식에 기대고 있다. 다른 프로젝트 경험을 확인받아야 한다.
+    id: "cssModules",
     name: "CSS Modules",
     group: "styling",
     logo: "/images/logos/css.png",
   },
   {
+    // TODO(decision): 학습 범위와 이유를 초안으로 썼다. 사실 확인이 필요하다.
+    id: "nextjs",
+    name: "Next.js",
+    group: "frontend",
+    logo: "/images/logos/nextjs.png",
+    learning: true,
+  },
+  {
+    // TODO(decision): 학습 범위와 이유를 초안으로 썼다. 사실 확인이 필요하다.
+    id: "typescript",
+    name: "TypeScript",
+    group: "frontend",
+    logo: "/images/logos/typescript.png",
+    learning: true,
+  },
+  {
+    // TODO(decision): 학습 범위와 이유를 초안으로 썼다. 사실 확인이 필요하다.
+    id: "tailwind",
     name: "Tailwind CSS",
     group: "styling",
     logo: "/images/logos/tailwind.png",
