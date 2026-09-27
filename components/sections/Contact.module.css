@@ -1,35 +1,62 @@
-.note {
-  margin: calc(var(--space-12) * -1) 0 var(--space-16);
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-6);
   color: var(--muted);
-  font-size: var(--text-base);
-  font-weight: 400;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
-.list {
+.label::before {
+  content: "/";
+}
+
+/* 사이트의 마지막 목소리다. 가장 크게 둔다. */
+.headline {
+  display: grid;
+  margin: 0 0 var(--space-6);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+}
+
+.note {
+  margin: 0 0 var(--space-16);
+  color: var(--muted);
+  font-size: var(--text-md);
+}
+
+.action {
+  margin-bottom: var(--space-12);
+}
+
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--border);
 }
 
-.item {
-  border-bottom: 1px solid var(--border);
+/*
+ * 화면에 들어오면 차례로 떠오른다. animation 은 페이지가 뜨자마자 재생되어
+ * 스크롤해서 도착했을 때는 이미 끝나 있으므로 transition 으로 둔다.
+ */
+.channels li {
+  opacity: 0;
+  translate: 0 10px;
+  transition:
+    opacity 0.45s ease,
+    translate 0.55s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
 }
 
-.link {
-  display: flex;
-  align-items: center;
-  min-height: 56px;
-  padding-block: var(--space-3);
-  color: var(--foreground);
-  font-size: var(--text-xl);
-  font-weight: 600;
-  letter-spacing: var(--tracking-snug);
-  text-decoration: none;
-  word-break: break-all;
-  transition: color 0.18s ease;
-}
-
-.link:hover {
-  color: var(--accent);
+[data-shown="true"] .channels li {
+  opacity: 1;
+  translate: none;
 }
