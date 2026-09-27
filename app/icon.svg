@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Heo Jae Won">
-  <!-- 글꼴에 기대지 않도록 H 를 사각형으로 그린다. 파비콘에는 폰트가 없다. -->
-  <rect width="64" height="64" rx="14" fill="#0071e3" />
-  <rect x="18" y="16" width="8" height="32" fill="#ffffff" />
-  <rect x="38" y="16" width="8" height="32" fill="#ffffff" />
-  <rect x="18" y="28" width="28" height="8" fill="#ffffff" />
-</svg>
