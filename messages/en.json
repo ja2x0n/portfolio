@@ -81,9 +81,6 @@
   },
   "Projects": {
     "title": "Projects",
-    "carousel": "Featured projects",
-    "prev": "Previous project",
-    "next": "Next project",
     "period": "Period",
     "role": "Role",
     "stack": "Stack",
@@ -103,7 +100,6 @@
     "labels": {
       "team": "Team",
       "result": "Result",
-      "tools": "Tools",
       "situation": "Situation",
       "task": "Task",
       "action": "Action",
