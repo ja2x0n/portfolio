@@ -358,4 +358,9 @@
   height: 2px;
   background: var(--accent);
   transform-origin: 0 50%;
+  /*
+   * 헤더 아래로 펼쳐지는 언어 메뉴와 높이가 겹친다. 이 바는 장식이므로
+   * 포인터를 받지 않게 해 메뉴 클릭이 막히지 않도록 한다.
+   */
+  pointer-events: none;
 }
