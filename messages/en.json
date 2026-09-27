@@ -292,5 +292,19 @@
     ],
     "note": "I'm looking forward to hearing from you.",
     "sendMail": "Send an email"
+  },
+  "Footer": {
+    "navLabel": "Navigate",
+    "nav": {
+      "about": "About",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "rights": "© 2026 Heo Jae Won",
+    "note": [
+      "From planning to screens, I build it through with the team.",
+      "I'm looking forward to hearing from you."
+    ],
+    "top": "Back to top"
   }
 }
