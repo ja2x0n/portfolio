@@ -245,6 +245,13 @@
   },
   "Experience": {
     "title": "Experience",
+    "awardsLabel": "수상",
+    "activityLabel": "활동과 이력",
+    "educationLabel": "학력",
+    "education": {
+      "year": "2025 — 2028",
+      "status": "졸업 예정"
+    },
     "items": {
       "classLeader": {
         "period": "2026.08 — 진행 중",
@@ -264,7 +271,7 @@
       },
       "hackathon": {
         "period": "2026.07",
-        "label": "교내 해커톤 최우수상 · 변기"
+        "label": "교내 해커톤 최우수상(3위) · 변기"
       },
       "portfolioAward": {
         "period": "2026.06",

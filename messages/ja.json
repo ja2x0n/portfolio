@@ -231,6 +231,13 @@
   },
   "Experience": {
     "title": "Experience",
+    "awardsLabel": "受賞",
+    "activityLabel": "活動と経歴",
+    "educationLabel": "学歴",
+    "education": {
+      "year": "2025 — 2028",
+      "status": "卒業予定"
+    },
     "items": {
       "classLeader": {
         "period": "2026.08 — 現在",
@@ -250,7 +257,7 @@
       },
       "hackathon": {
         "period": "2026.07",
-        "label": "校内ハッカソン 3位 · ピョンギ"
+        "label": "校内ハッカソン 最優秀賞（3位）· ピョンギ"
       },
       "portfolioAward": {
         "period": "2026.06",

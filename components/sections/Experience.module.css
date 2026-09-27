@@ -1,35 +1,180 @@
-.list {
-  margin: 0;
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-6);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.label::before {
+  content: "/";
+}
+
+.awards {
+  margin: 0 0 var(--space-12);
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--border);
 }
 
-.item {
+/* 수상 한 줄. 왼쪽에 표시, 가운데 이름, 오른쪽에 기간. */
+.award {
   display: grid;
-  gap: var(--space-1);
-  padding-block: var(--space-6);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--space-4);
+  align-items: baseline;
+  padding-block: var(--space-4);
   border-bottom: 1px solid var(--border);
 }
 
-@media (min-width: 640px) {
-  .item {
-    grid-template-columns: 11rem minmax(0, 1fr);
-    gap: var(--space-8);
-    align-items: baseline;
-  }
+.icon {
+  align-self: center;
+  color: var(--award);
+}
+
+.awardName {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-snug);
+}
+
+/* 연도 묶음. 왼쪽에 연도, 오른쪽에 그 해 항목. */
+/* 아래 두 칸. 왼쪽 학력, 오른쪽 활동. */
+.bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-12);
+}
+
+.groups {
+  display: grid;
+  gap: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.group {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: var(--space-8);
+  padding-top: var(--space-6);
+}
+
+.group + .group {
+  border-top: 1px solid var(--border);
+}
+
+.year {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-snug);
+}
+
+.items {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+}
+
+.name {
+  font-size: var(--text-base);
+  font-weight: 400;
 }
 
 .period {
   color: var(--muted);
   font-size: var(--text-sm);
-  font-weight: 400;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.01em;
 }
 
-.label {
-  font-size: var(--text-lg);
-  font-weight: 400;
-  letter-spacing: var(--tracking-snug);
+/*
+ * 학력. 목록에 섞지 않고 한 덩어리로 둔다. 연도와 상태만 곁들인다.
+ */
+.education {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.eduYear {
+  margin: 0 0 var(--space-3);
+  color: var(--accent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-wide);
+}
+
+.school {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+}
+
+.eduStatus {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-base);
+}
+
+/*
+ * 화면에 들어오면 차례로 떠오른다. animation 은 페이지가 뜨자마자 재생되어
+ * 스크롤해서 도착했을 때는 이미 끝나 있으므로 transition 으로 둔다.
+ */
+.award,
+.group {
+  opacity: 0;
+  translate: 0 12px;
+  transition:
+    opacity 0.5s ease,
+    translate 0.6s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+[data-shown="true"] .award,
+[data-shown="true"] .group {
+  opacity: 1;
+  translate: none;
+}
+
+/* 좁은 화면: 수상은 기간을 아래로 내리고, 연도는 항목 위로 올린다. */
+@media (max-width: 639px) {
+  .award {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .award .period {
+    grid-column: 2;
+  }
+
+  .group {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+/* 두 칸을 나란히 둘 폭이 없으면 위아래로 쌓는다. */
+@media (max-width: 899px) {
+  .bottom {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-12);
+  }
 }
