@@ -10,6 +10,11 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
+  /*
+   * 문서는 푸터에서 정확히 끝난다. 그 아래로 더 밀리는 것은 브라우저의
+   * 고무줄 효과다. contain 은 전파만 막고 탄성은 남으므로 none 을 쓴다.
+   */
+  overscroll-behavior-y: none;
 }
 
 /* 라틴 글자는 --font-latin, 한글은 --font-ko 가 맡는다. */
