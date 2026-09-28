@@ -76,7 +76,8 @@
   display: flex;
   align-items: center;
   width: fit-content;
-  min-height: 40px;
+  /* 터치 영역 최소 44px. 글자 높이만으로는 모자란다. */
+  min-height: 44px;
   background-image: linear-gradient(currentColor, currentColor);
   background-repeat: no-repeat;
   background-position: 0 78%;
