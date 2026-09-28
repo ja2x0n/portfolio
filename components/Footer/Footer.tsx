@@ -77,7 +77,7 @@ export default async function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Icon size={26} />
+                    <Icon size={26} aria-hidden />
                   </a>
                 </li>
               );
