@@ -1,12 +1,9 @@
+/*
+ * 앵커로 내려왔을 때 멈출 자리는 globals.css 의 scroll-padding-top 이 정한다.
+ * 섹션은 헤더 바로 아래에서 시작하고, 아래 여백이 그대로 숨 쉴 공간이 된다.
+ */
 .section {
   padding-block: var(--section-gap);
-  /*
-   * 앵커로 내려왔을 때 멈출 자리. 섹션의 위쪽 여백(--section-gap)을 빼서
-   * 그 여백이 아니라 제목이 Header 바로 아래에 오게 한다.
-   */
-  scroll-margin-top: calc(
-    var(--header-height) - var(--section-gap) - var(--space-12)
-  );
 }
 
 /* 모든 섹션이 같은 시작선을 쓴다. Header보다 조금 안쪽이다. */
