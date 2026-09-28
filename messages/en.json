@@ -18,7 +18,7 @@
     "title": "About",
     "greeting": "Hello, I'm Heo Jae Won, a frontend developer.",
     "body": [
-      "From planning to screens, I build it through with the team. As team lead four times, I led planning, role assignment and scheduling.",
+      "From planning to screens, I build it through with the team. As team lead 4 times, I led planning, role assignment and scheduling.",
       "I actively use AI tools to work more productively, and keep verifying the code along the way."
     ],
     "photoAlt": "Portrait of Heo Jae Won",
@@ -42,7 +42,7 @@
     "items": [
       {
         "title": "Leading a team to the end",
-        "body": "Led planning through scheduling as team lead four times. On CapTeam I designed the student and admin screen structure as <b>the only frontend developer</b>, and the project won the <b>school capstone grand prize</b>."
+        "body": "Led planning through scheduling as team lead 4 times. On CapTeam I designed the student and admin screen structure as <b>the only frontend developer</b>, and the project won the <b>school capstone grand prize</b>."
       },
       {
         "title": "Beyond the screen, into operations",
@@ -174,8 +174,13 @@
         {
           "title": "Duplicate AI team requests and lost progress on reload",
           "situation": "AI team creation returned a job id and ran on the server. Pressing the button again or reloading could create a duplicate job or lose the progress.",
-          "task": "",
-          "action": [],
+          "task": "I had to identify a job once it started, so that re-entering the page could keep reading the state of the same jobId.",
+          "action": [
+            "Stored the jobId right after the request",
+            "Locked the button and blocked re-requests while a job was running",
+            "Reflected progress, success and failure by polling on the jobId",
+            "Restored the saved job on reload and re-entry"
+          ],
           "outcome": [
             "Duplicate team creation blocked",
             "Admins no longer lose track of progress"
@@ -184,8 +189,12 @@
         {
           "title": "Repeated API calls and rising running cost",
           "situation": "E2E and Network logs showed dashboard, header, unread and channel summary requests repeating on every screen change and poll. The admin chat list also had an N+1 pattern.",
-          "task": "",
+          "task": "I had to cut unnecessary calls and concurrent duplicate requests while keeping the feature working.",
           "action": [
+            "A short TTL cache, with in-flight requests shared",
+            "Skipped unread polling in background tabs",
+            "Moved updates onto WebSocket events",
+            "Removed the duplicate read call when a channel is selected",
             "Recorded that removing the N+1 pattern fully needs a batch API on the backend"
           ],
           "outcome": [
@@ -196,21 +205,26 @@
         {
           "title": "UI and accessibility warnings found through E2E",
           "situation": "Walking teacher and student flows at 390, 412 and 768px surfaced nested list items, duplicate React keys and horizontal overflow on mobile.",
-          "task": "",
-          "action": [],
+          "task": "I had to clear warnings that do not look like bugs, and verify the permission, empty and exception flows again.",
+          "action": [
+            "Rewrote the notice list as ul → li → link",
+            "Applied React keys based on team and order",
+            "Checked wrong sign-in, protected routes, survey completion, log time guards and empty input validation",
+            "Re-checked horizontal overflow on mobile and Console warnings"
+          ],
           "outcome": [
             "Overflow and React warnings gone on the screens I tested",
             "A verification pass covering access, empty states and exceptions"
           ]
         }
       ],
-      "result": ["Capstone grand prize, 2026 spring semester"],
+      "result": ["Capstone grand prize, 2026 1st semester"],
       "learned": [
         {
           "title": "Screens are not the whole job — data flow and running cost matter",
           "items": [
             "Repeated calls affect running cost, not just speed.",
-            "Polling needs a stop condition and a way to resume.",
+            "Wiring up polling myself, I found that a start condition is not enough — it needs a stop condition and a way to resume.",
             "Frontend fixes and backend changes are different scopes."
           ]
         },
