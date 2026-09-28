@@ -58,6 +58,16 @@
   --space-16: 4rem;
   --space-20: 5rem;
 
+  /*
+   * 일본어 글꼴. OS 에 이미 깔려 있는 것만 쓴다.
+   * 웹폰트로 받으면 유니코드 범위별로 쪼개진 @font-face 가 358개 생기고,
+   * 그 CSS 가 한국어·영어 페이지까지 따라와 렌더를 막는다.
+   * sans-serif 는 넣지 않는다. globals.css 의 목록이 이미 그것으로 끝난다.
+   */
+  --font-ja:
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic",
+    Meiryo;
+
   --header-height: 68px;
   --header-inline: clamp(1.25rem, 4vw, 3.5rem);
   /* 섹션은 Header보다 조금 안쪽에서 시작한다. */
