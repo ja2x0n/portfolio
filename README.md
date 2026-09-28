@@ -63,11 +63,3 @@ public/         이미지, 로고
 
 Issue → 브랜치(`타입-번호-작업명`) → 커밋 전 컨펌 → PR → Squash merge.
 자세한 규칙은 [docs/rules/agent-workflow.md](docs/rules/agent-workflow.md)에 있습니다.
-
-## AI 활용
-
-이 저장소의 코드는 상당 부분을 AI(Claude)와 함께 작성했습니다. 커밋 메시지의
-`Co-Authored-By` 가 그 기록입니다.
-
-설계 판단, 콘텐츠의 사실 관계, 최종 검토는 직접 했습니다. AI가 만든 결과는
-화면·Network 탭·E2E·모바일 뷰포트로 확인한 뒤 반영했습니다.
