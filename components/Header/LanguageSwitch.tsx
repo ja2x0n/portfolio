@@ -13,6 +13,15 @@ const labels = { ko: "한", en: "EN", ja: "日" } as const;
 const names = { ko: "한국어", en: "English", ja: "日本語" } as const;
 type Locale = keyof typeof labels;
 
+/*
+ * 언어가 붙은 주소는 미들웨어를 타지 않으므로(proxy.ts) 고른 언어를 여기서
+ * 직접 남긴다. 이 값이 있어야 나중에 루트(/)로 들어왔을 때 마지막에 고른
+ * 언어로 보낸다. 이름은 next-intl 이 읽는 것과 같아야 한다.
+ */
+function remember(next: Locale) {
+  document.cookie = `NEXT_LOCALE=${next}; path=/; max-age=31536000; samesite=lax`;
+}
+
 export default function LanguageSwitch() {
   const t = useTranslations("Header");
   const locale = useLocale() as Locale;
@@ -87,7 +96,10 @@ export default function LanguageSwitch() {
                   onPointerLeave={() => setPreview(null)}
                   onFocus={() => setPreview(l)}
                   onBlur={() => setPreview(null)}
-                  onClick={close}
+                  onClick={() => {
+                    remember(l);
+                    close();
+                  }}
                 >
                   {labels[l]}
                 </Link>
