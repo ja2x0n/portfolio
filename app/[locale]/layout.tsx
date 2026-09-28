@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anybody, M_PLUS_1 } from "next/font/google";
+import { Anybody } from "next/font/google";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -39,14 +39,6 @@ const korean = localFont({
     },
   ],
   variable: "--font-ko",
-  display: "swap",
-});
-
-const japanese = M_PLUS_1({
-  weight: ["400", "600", "700"],
-  subsets: ["latin"],
-  preload: false,
-  variable: "--font-ja",
   display: "swap",
 });
 
@@ -94,7 +86,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
-      className={`${latin.variable} ${korean.variable} ${japanese.variable}`}
+      className={`${latin.variable} ${korean.variable}`}
       suppressHydrationWarning
     >
       <body>
