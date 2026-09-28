@@ -46,3 +46,13 @@ test("세 언어 모두 문구가 비어 있지 않다", async ({ page }) => {
     await expect(page.locator("body")).not.toContainText("About.");
   }
 });
+
+test("언어를 고른 뒤 루트로 오면 그 언어로 간다", async ({ page }) => {
+  await page.goto("/ko");
+  await switchTo(page, "en");
+  await expect(page).toHaveURL(/\/en(\/|$|#)/);
+
+  // 언어가 붙은 주소는 미들웨어를 타지 않으므로 선택을 쿠키로 남긴다.
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/en(\/|$|#)/);
+});
