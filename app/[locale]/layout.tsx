@@ -23,11 +23,6 @@ const latin = Anybody({
 const korean = localFont({
   src: [
     {
-      path: "../../fonts/Paperlogy-3Light.woff2",
-      weight: "300",
-      style: "normal",
-    },
-    {
       path: "../../fonts/Paperlogy-4Regular.woff2",
       weight: "400",
       style: "normal",
@@ -48,7 +43,7 @@ const korean = localFont({
 });
 
 const japanese = M_PLUS_1({
-  weight: ["300", "400", "600", "700"],
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
   preload: false,
   variable: "--font-ja",

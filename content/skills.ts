@@ -58,14 +58,12 @@ export const skills: Skill[] = [
     wordmark: true,
   },
   {
-    // TODO(decision): 설명이 이 저장소의 사용 방식에 기대고 있다. 다른 프로젝트 경험을 확인받아야 한다.
     id: "cssModules",
     name: "CSS Modules",
     group: "styling",
     logo: "/images/logos/css.png",
   },
   {
-    // TODO(decision): 학습 범위와 이유를 초안으로 썼다. 사실 확인이 필요하다.
     id: "nextjs",
     name: "Next.js",
     group: "frontend",
@@ -73,7 +71,6 @@ export const skills: Skill[] = [
     learning: true,
   },
   {
-    // TODO(decision): 학습 범위와 이유를 초안으로 썼다. 사실 확인이 필요하다.
     id: "typescript",
     name: "TypeScript",
     group: "frontend",
@@ -81,7 +78,6 @@ export const skills: Skill[] = [
     learning: true,
   },
   {
-    // TODO(decision): 학습 범위와 이유를 초안으로 썼다. 사실 확인이 필요하다.
     id: "tailwind",
     name: "Tailwind CSS",
     group: "styling",

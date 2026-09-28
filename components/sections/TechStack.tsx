@@ -41,6 +41,9 @@ function Row({
               alt=""
               width={96}
               height={96}
+              /* 화면에서는 3.25rem 판 안에 들어간다. 이 값이 없으면
+                 브라우저가 96px 의 2배인 256px 짜리를 받는다. */
+              sizes="52px"
             />
           </span>
 
