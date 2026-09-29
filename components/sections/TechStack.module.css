@@ -317,3 +317,97 @@
     transition-duration: 0.01ms;
   }
 }
+
+/*
+ * 함께 쓴 라이브러리. 행으로 세우지 않고 설명 안에 한 줄씩 둔다.
+ * 아코디언을 중첩하지 않는 이유: details 의 name 은 배타 그룹이라
+ * 안쪽에 같은 이름을 쓰면 자식을 여는 순간 부모가 닫힌다.
+ */
+.tools {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.toolsLabel {
+  margin: 0 0 var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/*
+ * 열을 목록에서 한 번만 정하고 각 줄이 subgrid 로 물려받는다.
+ * 줄마다 따로 잡으면 이름 길이가 달라 설명 시작점이 어긋난다.
+ */
+.toolList {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tool {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+  column-gap: var(--space-4);
+}
+
+.toolPlate {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--logo-plate);
+}
+
+.toolLogo {
+  width: auto;
+  height: auto;
+  max-width: 70%;
+  max-height: 66%;
+  object-fit: contain;
+}
+
+.toolLogo[data-wordmark="true"] {
+  max-width: 84%;
+}
+
+.toolName {
+  color: var(--foreground);
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  white-space: nowrap;
+}
+
+.toolDesc {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+/* 좁은 화면에서는 이름 아래로 설명을 내린다. 한 줄에 셋은 들어가지 않는다. */
+@media (max-width: 767px) {
+  .toolList {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .tool {
+    align-items: start;
+    row-gap: var(--space-2);
+  }
+
+  .toolDesc {
+    grid-column: 2;
+  }
+}
