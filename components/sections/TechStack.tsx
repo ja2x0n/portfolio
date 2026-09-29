@@ -16,12 +16,23 @@ function Row({
   index,
   group,
   desc,
+  tools,
+  toolsLabel,
   open,
 }: {
   skill: Skill;
   index: number;
   group: string;
   desc: string;
+  /** 함께 쓴 라이브러리. 행으로 세우지 않고 이 설명 안에 한 줄씩 둔다. */
+  tools: {
+    id: string;
+    name: string;
+    logo: string;
+    wordmark?: boolean;
+    desc: string;
+  }[];
+  toolsLabel: string;
   open: boolean;
 }) {
   return (
@@ -59,6 +70,31 @@ function Row({
 
         <div className={styles.content}>
           <p className={styles.desc}>{desc}</p>
+
+          {tools.length > 0 && (
+            <div className={styles.tools}>
+              <p className={styles.toolsLabel}>{toolsLabel}</p>
+              <ul className={styles.toolList}>
+                {tools.map((tool) => (
+                  <li key={tool.id} className={styles.tool}>
+                    <span className={styles.toolPlate}>
+                      <Image
+                        className={styles.toolLogo}
+                        data-wordmark={tool.wordmark}
+                        src={tool.logo}
+                        alt=""
+                        width={96}
+                        height={96}
+                        sizes="36px"
+                      />
+                    </span>
+                    <span className={styles.toolName}>{tool.name}</span>
+                    <span className={styles.toolDesc}>{tool.desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </details>
     </li>
@@ -78,6 +114,11 @@ export default async function TechStack() {
       index={index}
       group={t(`groups.${skill.group}`)}
       desc={t(`desc.${skill.id}`)}
+      tools={(skill.tools ?? []).map((tool) => ({
+        ...tool,
+        desc: t(`desc.${tool.id}`),
+      }))}
+      toolsLabel={t("toolsLabel")}
       // 다 닫힌 채로 시작하면 설명이 있다는 것을 모르고 지나친다.
       open={index === 0}
     />
