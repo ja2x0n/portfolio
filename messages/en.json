@@ -106,6 +106,7 @@
     "sections": {
       "problem": "The problem",
       "flow": "Service flow",
+      "architecture": "Service architecture",
       "role": "My role and contribution",
       "troubleshooting": "Troubleshooting",
       "ai": "Using AI, and verifying it",
@@ -237,7 +238,9 @@
           ]
         }
       ]
-    }
+    },
+    "architectureAlt": "Architecture diagram for CapTeam. Users reach the service through the React UI, which calls the Spring Boot API. The Spring Boot API holds the business logic for login, surveys, team creation, notices and chat; it stores member, survey and team data in MySQL and uploads chat files to Amazon S3. It also asks an AI Analyzer built with FastAPI to score student surveys and produce team matching candidates. The AI Analyzer calls an external LLM API to generate the reason behind each recommendation.",
+    "architectureFull": "View at full size"
   },
   "Experience": {
     "title": "Experience",
