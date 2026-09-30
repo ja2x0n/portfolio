@@ -59,7 +59,6 @@
     "toolsLabel": "あわせて使ったもの",
     "groups": {
       "frontend": "Frontend",
-      "stateData": "State & Data",
       "styling": "Styling"
     },
     "desc": {

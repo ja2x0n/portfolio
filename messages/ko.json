@@ -59,7 +59,6 @@
     "toolsLabel": "함께 쓴 것",
     "groups": {
       "frontend": "Frontend",
-      "stateData": "State & Data",
       "styling": "Styling"
     },
     "desc": {

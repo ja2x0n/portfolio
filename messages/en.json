@@ -62,7 +62,6 @@
     "toolsLabel": "Used alongside",
     "groups": {
       "frontend": "Frontend",
-      "stateData": "State & Data",
       "styling": "Styling"
     },
     "desc": {

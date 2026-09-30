@@ -4,7 +4,7 @@
  */
 
 /** 분류. 화면에서는 각 행 오른쪽에 라벨로 붙는다. */
-export const skillGroupIds = ["frontend", "stateData", "styling"] as const;
+export const skillGroupIds = ["frontend", "styling"] as const;
 
 export type SkillGroupId = (typeof skillGroupIds)[number];
 
