@@ -16,6 +16,15 @@ export const projects = [
     ],
     stack: ["React", "React Router", "Axios", "CSS Modules", "Zustand"],
     image: "/images/projects/capteam.png",
+    /**
+     * 서비스 아키텍처 다이어그램. 있는 프로젝트만 해당 섹션이 나온다.
+     * 그림에 검은 배경이 칠해져 있어 화면에서도 어두운 도판으로 담는다.
+     */
+    architecture: {
+      src: "/images/projects/capteam-architecture.png",
+      width: 1693,
+      height: 929,
+    },
     links: [
       {
         label: "GitHub",

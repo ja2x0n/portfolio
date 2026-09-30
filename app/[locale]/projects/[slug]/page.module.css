@@ -712,3 +712,52 @@
     gap: var(--space-2);
   }
 }
+
+/*
+ * 서비스 아키텍처 도판.
+ * 그림 자체에 검은 배경이 칠해져 있어, 같은 색 판에 담고 테두리를 둘러
+ * 라이트 테마에서도 "우연히 튄 검은 덩어리" 가 아니라 도판으로 읽히게 한다.
+ */
+.figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #000000;
+}
+
+/*
+ * 원본이 1693px 다. 좁은 화면에서 폭에 맞춰 줄이면 다이어그램 안의 글자가
+ * 뭉개진다. 줄이는 대신 가로로 넘겨 원래 크기에 가깝게 보여준다.
+ * overscroll-behavior-x 로 여기서 끝난 스크롤이 페이지로 번지지 않게 한다.
+ */
+.figureScroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.diagram {
+  display: block;
+  width: 100%;
+  min-width: 42rem;
+  height: auto;
+}
+
+/* 좁은 화면에서는 줄여도 다이어그램 글자가 읽히지 않는다. 원본을 열 길을 둔다. */
+.figureFull {
+  /* 그리드 칸 안에서 글자 폭만 차지하게 한다. block 이 되면 칸 전체로 늘어난다. */
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  /* 터치 영역 최소 44px. 글자 높이만으로는 모자란다. */
+  min-height: 44px;
+  margin-top: var(--space-2);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+@media (hover: hover) {
+  .figureFull:hover {
+    color: var(--accent);
+  }
+}

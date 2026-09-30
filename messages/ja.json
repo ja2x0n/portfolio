@@ -103,6 +103,7 @@
     "sections": {
       "problem": "解決したかったユーザーの課題",
       "flow": "サービスの流れ",
+      "architecture": "サービスアーキテクチャ",
       "role": "担当した役割と貢献範囲",
       "troubleshooting": "Troubleshooting",
       "ai": "AIの活用と検証",
@@ -234,7 +235,9 @@
           ]
         }
       ]
-    }
+    },
+    "architectureAlt": "CapTeam のサービスアーキテクチャ図。ユーザーは React UI からサービスを利用し、React UI は Spring Boot API にリクエストを送る。Spring Boot API はログイン・アンケート・チーム作成・お知らせ・チャットのビジネスロジックを担い、MySQL に会員・アンケート・チームのデータを保存し、Amazon S3 に チャットファイルをアップロードする。さらに FastAPI で作った AI Analyzer に分析を依頼し、学生アンケートに基づく力量分析とチームマッチング候補を受け取る。AI Analyzer は外部の LLM API を呼び出してチーム推薦理由を生成する。",
+    "architectureFull": "原寸で見る"
   },
   "Experience": {
     "title": "Experience",

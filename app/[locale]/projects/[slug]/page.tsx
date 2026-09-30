@@ -174,6 +174,39 @@ export default async function ProjectDetailPage({ params }: Props) {
           </section>
         </Reveal>
 
+        {project.architecture ? (
+          <Reveal>
+            <section className={styles.section}>
+              <h2 className={styles.title}>{d("sections.architecture")}</h2>
+              {/*
+                그림에 검은 배경이 칠해져 있어 어두운 도판으로 담는다.
+                원본이 1693px 라 좁은 화면에서는 줄이지 않고 가로로 넘긴다.
+                줄이면 다이어그램 안의 글자가 읽히지 않는다.
+              */}
+              <figure className={styles.figure}>
+                <div className={styles.figureScroll}>
+                  <Image
+                    className={styles.diagram}
+                    src={project.architecture.src}
+                    alt={d("architectureAlt")}
+                    width={project.architecture.width}
+                    height={project.architecture.height}
+                    sizes="(min-width: 900px) 56rem, 900px"
+                  />
+                </div>
+              </figure>
+              <a
+                className={styles.figureFull}
+                href={project.architecture.src}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {d("architectureFull")} ↗
+              </a>
+            </section>
+          </Reveal>
+        ) : null}
+
         <Reveal>
           <section className={styles.section}>
             <h2 className={styles.title}>{d("sections.role")}</h2>
