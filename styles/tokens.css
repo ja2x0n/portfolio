@@ -23,7 +23,12 @@
   --grain-opacity: 0.06;
   /* 히어로 이름 글자 칸 */
   --name-tile: color-mix(in srgb, var(--accent) 16%, var(--background));
-  color-scheme: light;
+  /*
+   * only 를 붙여야 안드로이드 Chrome 의 강제 다크(Auto Dark Theme)가 비껴간다.
+   * 시스템이 다크인 기기에서는 라이트로 바꿔도 브라우저가 화면을 다시 어둡게
+   * 덮어써서 테마 버튼이 안 듣는 것처럼 보인다. only 없는 light 는 효과가 없다.
+   */
+  color-scheme: only light;
 }
 
 [data-theme="dark"] {
@@ -43,7 +48,7 @@
   --grid-line: rgb(255 255 255 / 0.06);
   --grain-opacity: 0.08;
   --name-tile: color-mix(in srgb, var(--accent) 30%, var(--background));
-  color-scheme: dark;
+  color-scheme: only dark;
 }
 
 /* 레이아웃·타이포 (테마와 무관) */
